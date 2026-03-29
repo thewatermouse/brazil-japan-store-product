@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { LanguageProvider } from "@/components/LanguageProvider";
 
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Nippon Brasil Select",
   description:
-    "Cross-border ecommerce concept for selling compact Brazilian products directly to consumers in Japan."
+    "Loja bilingue para vender produtos brasileiros premium ao consumidor final no Japao."
 };
 
 export default function RootLayout({
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

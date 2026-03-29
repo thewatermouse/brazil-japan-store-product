@@ -1,0 +1,45 @@
+﻿"use client";
+
+import { ProductCard } from "@/components/ProductCard";
+import { useLanguage } from "@/components/LanguageProvider";
+import { products } from "@/data/products";
+
+const copy = {
+  pt: {
+    eyebrow: "Catalogo",
+    title: "Selecao para o consumidor final no Japao",
+    description:
+      "Produtos brasileiros premium, faceis de enviar, com foco em conveniencia, presente e recompra."
+  },
+  ja: {
+    eyebrow: "商品一覧",
+    title: "日本の一般消費者向けセレクション",
+    description:
+      "送りやすく、リピートしやすいブラジル産プレミアム商品を厳選しています。"
+  }
+} as const;
+
+export function ProductsContent() {
+  const { language } = useLanguage();
+  const t = copy[language];
+
+  return (
+    <section className="section">
+      <div className="container">
+        <div className="section-heading narrow">
+          <div>
+            <p className="eyebrow">{t.eyebrow}</p>
+            <h1>{t.title}</h1>
+          </div>
+          <p>{t.description}</p>
+        </div>
+
+        <div className="card-grid">
+          {products.map((product) => (
+            <ProductCard key={product.slug} product={product} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

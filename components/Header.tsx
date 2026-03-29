@@ -1,28 +1,42 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/products", label: "Catalog" },
-  { href: "/about", label: "Operation" },
-  { href: "/contact", label: "Contact" }
-];
+import { useLanguage } from "@/components/LanguageProvider";
+import { LanguageSwitch } from "@/components/LanguageSwitch";
+
+const navItems = {
+  pt: [
+    { href: "/", label: "Inicio" },
+    { href: "/products", label: "Produtos" },
+    { href: "/about", label: "Marca" },
+    { href: "/contact", label: "Contato" }
+  ],
+  ja: [
+    { href: "/", label: "ホーム" },
+    { href: "/products", label: "商品一覧" },
+    { href: "/about", label: "ブランド" },
+    { href: "/contact", label: "お問い合わせ" }
+  ]
+} as const;
 
 export function Header() {
   const pathname = usePathname();
+  const { language } = useLanguage();
 
   return (
     <header className="site-header">
       <div className="container nav-shell">
         <Link href="/" className="brand-mark">
-          <span className="brand-kicker">Brazil to Japan</span>
-          <strong>Nippon Brasil Select</strong>
+          <span className="brand-kicker">
+            {language === "pt" ? "Brasil para o Japao" : "Brazil to Japan"}
+          </span>
+          <strong>{language === "pt" ? "Loja Brasil Select" : "Nippon Brasil Select"}</strong>
         </Link>
 
         <nav className="nav-links" aria-label="Main navigation">
-          {navItems.map((item) => {
+          {navItems[language].map((item) => {
             const active = pathname === item.href;
             return (
               <Link
@@ -35,6 +49,7 @@ export function Header() {
             );
           })}
         </nav>
+        <LanguageSwitch />
       </div>
     </header>
   );
