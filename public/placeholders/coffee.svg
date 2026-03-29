@@ -1,0 +1,10 @@
+﻿<svg width="720" height="520" viewBox="0 0 720 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="520" rx="40" fill="#4E3425"/>
+  <rect x="70" y="60" width="580" height="400" rx="28" fill="#B07A49"/>
+  <rect x="150" y="100" width="420" height="300" rx="24" fill="#F4E8D4"/>
+  <ellipse cx="270" cy="245" rx="54" ry="76" fill="#6C432B"/>
+  <ellipse cx="450" cy="245" rx="54" ry="76" fill="#6C432B"/>
+  <path d="M270 185C300 210 300 280 270 305" stroke="#D8B08A" stroke-width="10" stroke-linecap="round"/>
+  <path d="M450 185C420 210 420 280 450 305" stroke="#D8B08A" stroke-width="10" stroke-linecap="round"/>
+  <text x="360" y="430" text-anchor="middle" fill="#F7EFE3" font-size="34" font-family="Georgia">Brazil Coffee</text>
+</svg>

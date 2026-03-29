@@ -22,6 +22,7 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="product-card product-card-rich">
       <div className={`product-visual ${toneClass}`}>
+        <img src={product.image} alt={product.name[language]} className="product-visual-image" />
         <span>{product.name[language]}</span>
       </div>
       <div className="product-meta">
@@ -32,7 +33,7 @@ export function ProductCard({ product }: ProductCardProps) {
       <p>{product.shortDescription[language]}</p>
       <dl className="spec-list">
         <div>
-          <dt>{language === "pt" ? "Conteúdo" : "内容量"}</dt>
+          <dt>{language === "pt" ? "Conteudo" : "内容量"}</dt>
           <dd>{product.weight}</dd>
         </div>
         <div>

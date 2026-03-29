@@ -5,13 +5,22 @@ import { useEffect, useMemo, useState } from "react";
 
 import { useLanguage } from "@/components/LanguageProvider";
 import { getProductBySlug, products } from "@/data/products";
-import { storeContact } from "@/data/store";
+import { shippingEstimateTiers, storeContact } from "@/data/store";
+
+type CartLine = {
+  slug: string;
+  quantity: number;
+};
 
 export function CheckoutContent() {
   const { language } = useLanguage();
-  const [slug, setSlug] = useState(products[0].slug);
-  const [quantity, setQuantity] = useState(1);
+  const [cart, setCart] = useState<CartLine[]>([{ slug: products[0].slug, quantity: 1 }]);
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [addressLine1, setAddressLine1] = useState("");
+  const [addressLine2, setAddressLine2] = useState("");
+  const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
   const [notes, setNotes] = useState("");
 
@@ -19,70 +28,130 @@ export function CheckoutContent() {
     const params = new URLSearchParams(window.location.search);
     const nextSlug = params.get("product");
     if (nextSlug && getProductBySlug(nextSlug)) {
-      setSlug(nextSlug);
+      setCart([{ slug: nextSlug, quantity: 1 }]);
     }
   }, []);
 
-  const product = getProductBySlug(slug) ?? products[0];
+  const validLines = cart
+    .map((line) => {
+      const product = getProductBySlug(line.slug);
+      return product
+        ? {
+            ...line,
+            product,
+            lineTotal: product.priceYen * line.quantity,
+            lineWeight: product.shippingWeightGrams * line.quantity
+          }
+        : null;
+    })
+    .filter(
+      (
+        line
+      ): line is {
+        slug: string;
+        quantity: number;
+        product: NonNullable<ReturnType<typeof getProductBySlug>>;
+        lineTotal: number;
+        lineWeight: number;
+      } => Boolean(line)
+    );
 
   const copy = {
     pt: {
       eyebrow: "Iniciar pedido",
-      title: "Monte seu pedido e envie em poucos passos.",
-      lead: "Este checkout simples funciona como fluxo inicial de compra. O cliente escolhe o produto, define quantidade e envia o pedido por email ou WhatsApp.",
+      title: "Monte seu pedido com mais de um produto.",
+      lead: "Agora o pedido aceita varios itens, quantidade por produto e dados completos para contato e entrega.",
       product: "Produto",
       quantity: "Quantidade",
+      addProduct: "Adicionar produto",
+      remove: "Remover",
       customer: "Nome",
+      customerEmail: "Email",
+      customerPhone: "Telefone",
+      address1: "Endereco",
+      address2: "Complemento",
+      postalCode: "CEP",
       city: "Cidade no Japao",
       notes: "Observacoes",
+      subtotal: "Subtotal",
+      shippingEstimate: "Frete estimado",
       total: "Total estimado",
       email: "Enviar por email",
       whatsapp: "Enviar por WhatsApp",
       browse: "Voltar ao catalogo",
       placeholderName: "Seu nome",
+      placeholderEmail: "voce@email.com",
+      placeholderPhone: "+81...",
+      placeholderAddress1: "Rua, numero, bairro",
+      placeholderAddress2: "Apartamento, predio, referencia",
+      placeholderPostalCode: "000-0000",
       placeholderCity: "Tokyo, Osaka, Kyoto...",
-      placeholderNotes: "Duvidas, horario de entrega, pedido maior..."
+      placeholderNotes: "Duvidas, horario de entrega, pedido maior...",
+      shippingNote: "Estimativa preliminar por faixa de peso. A confirmacao final depende da cotacao real de frete internacional via Correios/operacao logistica."
     },
     ja: {
       eyebrow: "注文を始める",
-      title: "商品を選び、必要事項を入れてお問い合わせください。",
-      lead: "この簡易チェックアウトでは、商品と数量を決めて、そのままメールまたはWhatsAppで注文内容を送れます。",
+      title: "複数商品をまとめて注文できます。",
+      lead: "商品ごとの数量、連絡先、配送先をまとめて送れる簡易カートです。",
       product: "商品",
       quantity: "数量",
+      addProduct: "商品を追加",
+      remove: "削除",
       customer: "お名前",
+      customerEmail: "メール",
+      customerPhone: "電話番号",
+      address1: "住所",
+      address2: "建物名・部屋番号",
+      postalCode: "郵便番号",
       city: "お届け先の都市",
       notes: "ご要望",
-      total: "概算金額",
+      subtotal: "商品小計",
+      shippingEstimate: "送料目安",
+      total: "概算合計",
       email: "メールで送る",
       whatsapp: "WhatsAppで送る",
       browse: "商品一覧へ戻る",
       placeholderName: "お名前",
+      placeholderEmail: "name@example.com",
+      placeholderPhone: "+81...",
+      placeholderAddress1: "町名・番地",
+      placeholderAddress2: "建物名・部屋番号",
+      placeholderPostalCode: "000-0000",
       placeholderCity: "Tokyo, Osaka, Kyoto...",
-      placeholderNotes: "配送希望、まとめ買い、質問など"
+      placeholderNotes: "配送希望、まとめ買い、質問など",
+      shippingNote: "重量帯による初期目安です。最終的な送料は国際配送の実見積でご案内します。"
     }
   } as const;
 
   const t = copy[language];
-  const total = product.priceYen * quantity;
+  const subtotal = validLines.reduce((sum, line) => sum + line.lineTotal, 0);
+  const totalWeightGrams = validLines.reduce((sum, line) => sum + line.lineWeight, 0);
+  const shippingEstimate = shippingEstimateTiers.find((tier) => totalWeightGrams <= tier.maxWeightGrams)?.estimatedYen ?? null;
+  const total = subtotal + (shippingEstimate ?? 0);
 
   const message = useMemo(() => {
-    const lines = [
+    const orderLines = validLines.map((line, index) => `${index + 1}. ${line.product.name[language]} x ${line.quantity} = JPY ${line.lineTotal.toLocaleString()}`);
+    return [
       language === "pt" ? "Novo pedido da loja" : "新しい注文希望",
-      `${t.product}: ${product.name[language]}`,
-      `${t.quantity}: ${quantity}`,
+      "",
+      ...orderLines,
+      "",
+      `${t.subtotal}: JPY ${subtotal.toLocaleString()}`,
+      `${t.shippingEstimate}: ${shippingEstimate ? `JPY ${shippingEstimate.toLocaleString()}` : "-"}`,
       `${t.total}: JPY ${total.toLocaleString()}`,
       `${t.customer}: ${name || "-"}`,
+      `${t.customerEmail}: ${email || "-"}`,
+      `${t.customerPhone}: ${phone || "-"}`,
+      `${t.address1}: ${addressLine1 || "-"}`,
+      `${t.address2}: ${addressLine2 || "-"}`,
+      `${t.postalCode}: ${postalCode || "-"}`,
       `${t.city}: ${city || "-"}`,
       `${t.notes}: ${notes || "-"}`
-    ];
+    ].join("\n");
+  }, [addressLine1, addressLine2, city, email, language, name, notes, phone, postalCode, shippingEstimate, subtotal, t.address1, t.address2, t.city, t.customer, t.customerEmail, t.customerPhone, t.notes, t.postalCode, t.shippingEstimate, t.subtotal, t.total, total, validLines]);
 
-    return lines.join("\n");
-  }, [city, language, name, notes, product, quantity, t.city, t.customer, t.notes, t.product, t.quantity, t.total, total]);
-
-  const emailHref = `mailto:${storeContact.email}?subject=${encodeURIComponent(product.name[language])}&body=${encodeURIComponent(message)}`;
-  const whatsappHref = storeContact.whatsappNumber
-    ? `https://wa.me/${storeContact.whatsappNumber}?text=${encodeURIComponent(message)}`
-    : "";
+  const emailHref = `mailto:${storeContact.email}?subject=${encodeURIComponent(language === "pt" ? "Novo pedido da loja" : "新しい注文希望")}&body=${encodeURIComponent(message)}`;
+  const whatsappHref = storeContact.whatsappNumber ? `https://wa.me/${storeContact.whatsappNumber}?text=${encodeURIComponent(message)}` : "";
 
   return (
     <section className="section">
@@ -93,80 +162,99 @@ export function CheckoutContent() {
           <p className="lead">{t.lead}</p>
 
           <div className="checkout-form-shell">
-            <label className="field-block">
-              <span>{t.product}</span>
-              <select
-                className="field-input"
-                value={product.slug}
-                onChange={(event) => {
-                  setSlug(event.target.value);
-                  window.history.replaceState({}, "", `/checkout?product=${event.target.value}`);
-                }}
-              >
-                {products.map((item) => (
-                  <option key={item.slug} value={item.slug}>
-                    {item.name[language]}
-                  </option>
-                ))}
-              </select>
-            </label>
+            {cart.map((line, index) => {
+              const currentProduct = getProductBySlug(line.slug) ?? products[0];
+              return (
+                <div key={`${line.slug}-${index}`} className="cart-line">
+                  <label className="field-block">
+                    <span>{t.product}</span>
+                    <select
+                      className="field-input"
+                      value={line.slug}
+                      onChange={(event) => {
+                        const next = [...cart];
+                        next[index] = { ...next[index], slug: event.target.value };
+                        setCart(next);
+                        if (index === 0) {
+                          window.history.replaceState({}, "", `/checkout?product=${event.target.value}`);
+                        }
+                      }}
+                    >
+                      {products.map((item) => (
+                        <option key={item.slug} value={item.slug}>{item.name[language]}</option>
+                      ))}
+                    </select>
+                  </label>
 
-            <label className="field-block">
-              <span>{t.quantity}</span>
-              <input
-                className="field-input"
-                type="number"
-                min={1}
-                value={quantity}
-                onChange={(event) => setQuantity(Number(event.target.value) || 1)}
-              />
-            </label>
+                  <label className="field-block">
+                    <span>{t.quantity}</span>
+                    <input
+                      className="field-input"
+                      type="number"
+                      min={1}
+                      value={line.quantity}
+                      onChange={(event) => {
+                        const next = [...cart];
+                        next[index] = { ...next[index], quantity: Math.max(1, Number(event.target.value) || 1) };
+                        setCart(next);
+                      }}
+                    />
+                  </label>
 
-            <label className="field-block">
-              <span>{t.customer}</span>
-              <input className="field-input" value={name} onChange={(event) => setName(event.target.value)} placeholder={t.placeholderName} />
-            </label>
+                  <div className="cart-line-meta">
+                    <span>{currentProduct.name[language]}</span>
+                    {cart.length > 1 ? (
+                      <button type="button" className="cart-line-remove" onClick={() => setCart(cart.filter((_, lineIndex) => lineIndex !== index))}>
+                        {t.remove}
+                      </button>
+                    ) : null}
+                  </div>
+                </div>
+              );
+            })}
 
-            <label className="field-block">
-              <span>{t.city}</span>
-              <input className="field-input" value={city} onChange={(event) => setCity(event.target.value)} placeholder={t.placeholderCity} />
-            </label>
+            <button type="button" className="button-secondary button-inline" onClick={() => setCart([...cart, { slug: products[0].slug, quantity: 1 }])}>
+              {t.addProduct}
+            </button>
 
-            <label className="field-block">
-              <span>{t.notes}</span>
-              <textarea className="field-input field-textarea" value={notes} onChange={(event) => setNotes(event.target.value)} placeholder={t.placeholderNotes} />
-            </label>
+            <label className="field-block"><span>{t.customer}</span><input className="field-input" value={name} onChange={(event) => setName(event.target.value)} placeholder={t.placeholderName} /></label>
+            <label className="field-block"><span>{t.customerEmail}</span><input className="field-input" value={email} onChange={(event) => setEmail(event.target.value)} placeholder={t.placeholderEmail} /></label>
+            <label className="field-block"><span>{t.customerPhone}</span><input className="field-input" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder={t.placeholderPhone} /></label>
+            <label className="field-block"><span>{t.address1}</span><input className="field-input" value={addressLine1} onChange={(event) => setAddressLine1(event.target.value)} placeholder={t.placeholderAddress1} /></label>
+            <label className="field-block"><span>{t.address2}</span><input className="field-input" value={addressLine2} onChange={(event) => setAddressLine2(event.target.value)} placeholder={t.placeholderAddress2} /></label>
+            <label className="field-block"><span>{t.postalCode}</span><input className="field-input" value={postalCode} onChange={(event) => setPostalCode(event.target.value)} placeholder={t.placeholderPostalCode} /></label>
+            <label className="field-block"><span>{t.city}</span><input className="field-input" value={city} onChange={(event) => setCity(event.target.value)} placeholder={t.placeholderCity} /></label>
+            <label className="field-block"><span>{t.notes}</span><textarea className="field-input field-textarea" value={notes} onChange={(event) => setNotes(event.target.value)} placeholder={t.placeholderNotes} /></label>
           </div>
         </div>
 
         <aside className="checkout-summary">
           <div className="checkout-product-card">
-            <span className="pill">{product.badge[language]}</span>
-            <h2>{product.name[language]}</h2>
-            <p>{product.shortDescription[language]}</p>
+            <span className="pill">{language === "pt" ? "Resumo do pedido" : "注文内容"}</span>
+            <h2>{language === "pt" ? "Seu carrinho" : "カート内容"}</h2>
+            <div className="checkout-line-list">
+              {validLines.map((line, index) => (
+                <div key={`${line.slug}-${index}`} className="checkout-line-item">
+                  <img src={line.product.image} alt={line.product.name[language]} className="checkout-line-image" />
+                  <div>
+                    <strong>{line.product.name[language]}</strong>
+                    <p>{line.quantity} x JPY {line.product.priceYen.toLocaleString()}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
             <dl className="detail-list">
-              <div>
-                <dt>{t.quantity}</dt>
-                <dd>{quantity}</dd>
-              </div>
-              <div>
-                <dt>{t.total}</dt>
-                <dd>JPY {total.toLocaleString()}</dd>
-              </div>
+              <div><dt>{t.subtotal}</dt><dd>JPY {subtotal.toLocaleString()}</dd></div>
+              <div><dt>{t.shippingEstimate}</dt><dd>{shippingEstimate ? `JPY ${shippingEstimate.toLocaleString()}` : "-"}</dd></div>
+              <div><dt>{t.total}</dt><dd>JPY {total.toLocaleString()}</dd></div>
             </dl>
           </div>
 
-          <p className="checkout-note">
-            {language === "pt"
-              ? "Depois de enviar, a loja confirma estoque, frete e forma de pagamento."
-              : "送信後、在庫・送料・決済方法を確認してご案内します。"}
-          </p>
+          <p className="checkout-note">{t.shippingNote}</p>
 
           <div className="hero-actions checkout-actions">
             <a href={emailHref} className="button-primary">{t.email}</a>
-            {storeContact.whatsappNumber ? (
-              <a href={whatsappHref} className="button-secondary" target="_blank" rel="noreferrer">{t.whatsapp}</a>
-            ) : null}
+            {storeContact.whatsappNumber ? <a href={whatsappHref} className="button-secondary" target="_blank" rel="noreferrer">{t.whatsapp}</a> : null}
             <Link href="/products" className="text-link">{t.browse}</Link>
           </div>
         </aside>
@@ -174,4 +262,3 @@ export function CheckoutContent() {
     </section>
   );
 }
-

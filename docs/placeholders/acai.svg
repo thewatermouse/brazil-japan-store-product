@@ -1,0 +1,10 @@
+﻿<svg width="720" height="520" viewBox="0 0 720 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="520" rx="40" fill="#5D2340"/>
+  <circle cx="170" cy="110" r="60" fill="#C67337" fill-opacity="0.45"/>
+  <path d="M180 260C180 214 217 176 263 176H457C503 176 540 214 540 260V270C540 348 477 411 399 411H321C243 411 180 348 180 270V260Z" fill="#E7D7BE"/>
+  <path d="M210 250C210 220 234 196 264 196H456C486 196 510 220 510 250V266C510 327 461 376 400 376H320C259 376 210 327 210 266V250Z" fill="#6D2745"/>
+  <circle cx="300" cy="238" r="18" fill="#8CA54F"/>
+  <circle cx="360" cy="220" r="18" fill="#8CA54F"/>
+  <circle cx="420" cy="238" r="18" fill="#8CA54F"/>
+  <text x="360" y="450" text-anchor="middle" fill="#F7EFE3" font-size="34" font-family="Georgia">Acai Powder</text>
+</svg>

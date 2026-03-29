@@ -6,18 +6,9 @@ import { useLanguage } from "@/components/LanguageProvider";
 import type { Product } from "@/data/products";
 
 const categoryTone = {
-  propolis: {
-    pt: "Extrato da mata brasileira",
-    ja: "ブラジルの森から生まれた滴"
-  },
-  coffee: {
-    pt: "Colheita, torra e xicara",
-    ja: "収穫から一杯まで"
-  },
-  wellness: {
-    pt: "Energia de fruta e floresta",
-    ja: "果実と自然のエネルギー"
-  }
+  propolis: { pt: "Extrato da mata brasileira", ja: "ブラジルの森から生まれた滴" },
+  coffee: { pt: "Colheita, torra e xicara", ja: "収穫から一杯まで" },
+  wellness: { pt: "Energia de fruta e floresta", ja: "果実と自然のエネルギー" }
 } as const;
 
 export function ProductDetailContent({ product }: { product: Product }) {
@@ -62,6 +53,7 @@ export function ProductDetailContent({ product }: { product: Product }) {
         <div className="product-storyboard">
           <div className={`product-stage tone-${product.category}`}>
             <span className="product-stage-kicker">{categoryTone[product.category][language]}</span>
+            <img src={product.image} alt={product.name[language]} className="product-stage-image" />
             <h1>{product.name[language]}</h1>
             <p className="lead">{product.shortDescription[language]}</p>
           </div>
@@ -83,26 +75,12 @@ export function ProductDetailContent({ product }: { product: Product }) {
         <aside className="info-panel info-panel-sticky">
           <h2>{t.ready}</h2>
           <dl className="detail-list">
-            <div>
-              <dt>{t.price}</dt>
-              <dd>JPY {product.priceYen.toLocaleString()}</dd>
-            </div>
-            <div>
-              <dt>{t.weight}</dt>
-              <dd>{product.weight}</dd>
-            </div>
-            <div>
-              <dt>{t.shelfLife}</dt>
-              <dd>{product.shelfLife}</dd>
-            </div>
-            <div>
-              <dt>{t.origin}</dt>
-              <dd>{product.origin[language]}</dd>
-            </div>
+            <div><dt>{t.price}</dt><dd>JPY {product.priceYen.toLocaleString()}</dd></div>
+            <div><dt>{t.weight}</dt><dd>{product.weight}</dd></div>
+            <div><dt>{t.shelfLife}</dt><dd>{product.shelfLife}</dd></div>
+            <div><dt>{t.origin}</dt><dd>{product.origin[language]}</dd></div>
           </dl>
-          <Link href={`/checkout?product=${product.slug}`} className="button-primary button-block">
-            {t.buy}
-          </Link>
+          <Link href={`/checkout?product=${product.slug}`} className="button-primary button-block">{t.buy}</Link>
         </aside>
       </div>
 
@@ -111,9 +89,7 @@ export function ProductDetailContent({ product }: { product: Product }) {
           <p className="eyebrow">{t.benefits}</p>
           <div className="benefit-grid">
             {product.benefits.map((benefit) => (
-              <article key={benefit[language]} className="benefit-card">
-                <p>{benefit[language]}</p>
-              </article>
+              <article key={benefit[language]} className="benefit-card"><p>{benefit[language]}</p></article>
             ))}
           </div>
         </section>
@@ -127,16 +103,8 @@ export function ProductDetailContent({ product }: { product: Product }) {
           </div>
           <div className="ritual-box">
             <dl className="detail-list">
-              <div>
-                <dt>{t.usage}</dt>
-                <dd>{product.usage[language]}</dd>
-              </div>
-              {product.tastingNotes ? (
-                <div>
-                  <dt>{t.notes}</dt>
-                  <dd>{product.tastingNotes[language]}</dd>
-                </div>
-              ) : null}
+              <div><dt>{t.usage}</dt><dd>{product.usage[language]}</dd></div>
+              {product.tastingNotes ? <div><dt>{t.notes}</dt><dd>{product.tastingNotes[language]}</dd></div> : null}
             </dl>
           </div>
         </section>
