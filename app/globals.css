@@ -1,17 +1,21 @@
-:root {
-  --bg: #f7f1e8;
-  --surface: rgba(255, 250, 243, 0.76);
-  --surface-strong: #fffaf2;
-  --text: #1f1b16;
-  --muted: #63594f;
-  --line: rgba(31, 27, 22, 0.12);
-  --accent: #1f5c3f;
-  --accent-strong: #123827;
-  --accent-warm: #bd6d2d;
-  --dark: #112018;
-  --shadow: 0 24px 60px rgba(33, 28, 22, 0.12);
-  --radius: 24px;
-  --container: 1120px;
+﻿:root {
+  --bg: #efe5d3;
+  --surface: rgba(248, 241, 228, 0.9);
+  --surface-strong: #fbf4e8;
+  --surface-deep: #e5d4bb;
+  --text: #201812;
+  --muted: #5f5247;
+  --line: rgba(32, 24, 18, 0.12);
+  --accent: #28553f;
+  --accent-strong: #173628;
+  --accent-warm: #c67337;
+  --earth: #855332;
+  --olive: #667a3c;
+  --berry: #6d2745;
+  --dark: #14241b;
+  --shadow: 0 24px 60px rgba(47, 31, 20, 0.14);
+  --radius: 28px;
+  --container: 1140px;
 }
 
 * {
@@ -27,9 +31,10 @@ body {
   font-family: Georgia, "Times New Roman", serif;
   color: var(--text);
   background:
-    radial-gradient(circle at top left, rgba(189, 109, 45, 0.12), transparent 28%),
-    radial-gradient(circle at top right, rgba(31, 92, 63, 0.12), transparent 32%),
-    linear-gradient(180deg, #f9f3ea 0%, #f5ecdf 50%, #efe2d1 100%);
+    radial-gradient(circle at top left, rgba(198, 115, 55, 0.18), transparent 26%),
+    radial-gradient(circle at 80% 12%, rgba(40, 85, 63, 0.18), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(109, 39, 69, 0.1), transparent 20%),
+    linear-gradient(180deg, #f6efdf 0%, #efe3cf 50%, #e7d7be 100%);
 }
 
 a {
@@ -49,9 +54,9 @@ main {
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 20;
   backdrop-filter: blur(18px);
-  background: rgba(247, 241, 232, 0.7);
+  background: rgba(246, 239, 223, 0.72);
   border-bottom: 1px solid var(--line);
 }
 
@@ -60,26 +65,30 @@ main {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  min-height: 78px;
+  min-height: 82px;
 }
 
 .brand-mark {
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
+  gap: 0.15rem;
+}
+
+.brand-mark strong {
+  font-size: 1.2rem;
 }
 
 .brand-kicker,
 .eyebrow {
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
   color: var(--accent);
 }
 
 .nav-links {
   display: flex;
-  gap: 0.8rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 
@@ -87,18 +96,19 @@ main {
   padding: 0.7rem 1rem;
   border-radius: 999px;
   color: var(--muted);
+  transition: 160ms ease;
 }
 
 .nav-link.active,
 .nav-link:hover {
   color: var(--text);
-  background: rgba(31, 92, 63, 0.08);
+  background: rgba(40, 85, 63, 0.08);
 }
 
 .language-switch {
   display: flex;
   gap: 0.4rem;
-  padding: 0.3rem;
+  padding: 0.28rem;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: rgba(255, 250, 243, 0.8);
@@ -109,7 +119,7 @@ main {
   background: transparent;
   color: var(--muted);
   border-radius: 999px;
-  padding: 0.55rem 0.9rem;
+  padding: 0.55rem 0.95rem;
   font-family: "Trebuchet MS", sans-serif;
   font-weight: 700;
   cursor: pointer;
@@ -122,42 +132,50 @@ main {
 
 .hero-section,
 .section {
-  padding: 4.5rem 0;
+  padding: 5rem 0;
 }
 
 .hero-grid,
 .operation-grid,
 .product-layout,
 .contact-shell,
-.footer-grid {
+.footer-grid,
+.shelf-grid {
   display: grid;
   gap: 1.5rem;
 }
 
 .hero-grid,
 .operation-grid,
-.contact-shell {
-  grid-template-columns: 1.3fr 1fr;
+.contact-shell,
+.shelf-grid {
+  grid-template-columns: 1.2fr 1fr;
+}
+
+.hero-grid-wide {
+  align-items: stretch;
 }
 
 .hero-section h1,
 .section h1,
-.section h2 {
+.section h2,
+.timeline h3 {
   margin: 0;
   line-height: 0.98;
 }
 
 .hero-section h1 {
-  font-size: clamp(3rem, 6vw, 5.6rem);
-  max-width: 11ch;
+  font-size: clamp(3.2rem, 7vw, 6.4rem);
+  max-width: 10ch;
+  letter-spacing: -0.04em;
 }
 
 .section h1 {
-  font-size: clamp(2.4rem, 4vw, 4rem);
+  font-size: clamp(2.5rem, 4vw, 4.2rem);
 }
 
 .section h2 {
-  font-size: clamp(2rem, 3vw, 3rem);
+  font-size: clamp(2rem, 3vw, 3.2rem);
 }
 
 .hero-copy,
@@ -166,9 +184,13 @@ main {
 li,
 dd {
   font-family: "Trebuchet MS", sans-serif;
-  font-size: 1.04rem;
-  line-height: 1.7;
+  font-size: 1.06rem;
+  line-height: 1.75;
   color: var(--muted);
+}
+
+.hero-copy {
+  max-width: 55ch;
 }
 
 .hero-actions {
@@ -185,7 +207,10 @@ dd {
 .product-detail-card,
 .info-panel,
 .contact-card,
-.step-card {
+.step-card,
+.promise-box,
+.shelf-copy,
+.shelf-art {
   border-radius: var(--radius);
 }
 
@@ -194,8 +219,8 @@ dd {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  padding: 0.9rem 1.3rem;
+  min-height: 50px;
+  padding: 0.95rem 1.35rem;
   font-family: "Trebuchet MS", sans-serif;
   font-weight: 700;
 }
@@ -208,7 +233,7 @@ dd {
 
 .button-secondary {
   border: 1px solid var(--line);
-  background: rgba(255, 250, 243, 0.7);
+  background: rgba(255, 248, 238, 0.72);
 }
 
 .hero-panel,
@@ -217,7 +242,10 @@ dd {
 .info-panel,
 .contact-card,
 .step-card,
-.site-footer {
+.site-footer,
+.promise-box,
+.shelf-copy,
+.shelf-art {
   border: 1px solid var(--line);
   background: var(--surface);
   box-shadow: var(--shadow);
@@ -228,8 +256,25 @@ dd {
 .product-detail-card,
 .info-panel,
 .contact-card,
-.step-card {
+.step-card,
+.promise-box,
+.shelf-copy,
+.shelf-art {
   padding: 1.5rem;
+}
+
+.hero-nature {
+  padding-top: 6rem;
+}
+
+.hero-panel-organic {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background:
+    radial-gradient(circle at top right, rgba(198, 115, 55, 0.18), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(40, 85, 63, 0.2), transparent 32%),
+    var(--surface);
 }
 
 .panel-title,
@@ -237,16 +282,16 @@ dd {
 .pill,
 dt {
   font-family: "Trebuchet MS", sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
 .pill {
   display: inline-flex;
-  padding: 0.45rem 0.7rem;
+  padding: 0.45rem 0.75rem;
   border-radius: 999px;
-  background: rgba(31, 92, 63, 0.1);
+  background: rgba(40, 85, 63, 0.1);
   color: var(--accent-strong);
 }
 
@@ -256,11 +301,64 @@ dt {
   padding-left: 1.2rem;
 }
 
+.bullet-list-spaced li + li {
+  margin-top: 0.8rem;
+}
+
+.ingredient-orbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.8rem;
+}
+
+.ingredient-orbs span {
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: rgba(20, 36, 27, 0.06);
+  font-family: "Trebuchet MS", sans-serif;
+  font-weight: 700;
+}
+
+.shelf-grid {
+  align-items: center;
+}
+
+.shelf-copy {
+  background: rgba(251, 244, 232, 0.75);
+}
+
+.shelf-art {
+  min-height: 320px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 1rem;
+  align-items: stretch;
+  background: linear-gradient(180deg, rgba(255, 248, 238, 0.7), rgba(229, 212, 187, 0.74));
+}
+
+.shelf-card {
+  border-radius: 24px;
+}
+
+.shelf-card-leaf {
+  background: linear-gradient(160deg, rgba(40, 85, 63, 0.95), rgba(102, 122, 60, 0.7));
+}
+
+.shelf-card-earth {
+  background: linear-gradient(160deg, rgba(133, 83, 50, 0.95), rgba(198, 115, 55, 0.7));
+}
+
+.shelf-card-sun {
+  background: linear-gradient(160deg, rgba(109, 39, 69, 0.9), rgba(198, 115, 55, 0.58));
+  grid-column: 2;
+}
+
 .stat-grid,
 .card-grid,
 .stack-grid {
   display: grid;
-  gap: 1rem;
+  gap: 1.2rem;
 }
 
 .stat-grid {
@@ -291,6 +389,39 @@ dt {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.product-card-rich {
+  background: linear-gradient(180deg, rgba(251, 244, 232, 0.86), rgba(244, 233, 215, 0.92));
+}
+
+.product-visual {
+  min-height: 180px;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.2rem;
+  border-radius: 20px;
+  color: #fff7ef;
+  font-size: 1.4rem;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+  background: linear-gradient(160deg, var(--accent), var(--accent-warm));
+}
+
+.product-visual span {
+  max-width: 9ch;
+}
+
+.tone-propolis {
+  background: linear-gradient(160deg, #315e3d, #8ca54f);
+}
+
+.tone-coffee {
+  background: linear-gradient(160deg, #513524, #b07a49);
+}
+
+.tone-acai {
+  background: linear-gradient(160deg, #5d2340, #9c4a72);
+}
+
 .product-meta,
 .spec-list,
 .detail-list {
@@ -309,7 +440,7 @@ dt {
 .info-panel h2,
 .contact-card h2,
 .step-card h2 {
-  margin: 1rem 0 0.3rem;
+  margin: 1rem 0 0.35rem;
 }
 
 .spec-list,
@@ -334,14 +465,15 @@ dt {
   font-weight: 700;
 }
 
-.section-dark {
-  background: linear-gradient(180deg, rgba(17, 32, 24, 0.94), rgba(16, 28, 23, 0.97));
-  color: #f9f3ea;
+.ritual-section {
+  background: linear-gradient(180deg, rgba(20, 36, 27, 0.96), rgba(24, 44, 33, 0.98));
+  color: #f6efdf;
 }
 
-.section-dark p,
-.section-dark li {
-  color: rgba(249, 243, 234, 0.76);
+.ritual-section p,
+.ritual-section li,
+.ritual-section h3 {
+  color: rgba(246, 239, 223, 0.84);
 }
 
 .timeline {
@@ -350,8 +482,8 @@ dt {
 }
 
 .timeline div {
-  padding: 1.25rem;
-  border-radius: 20px;
+  padding: 1.3rem;
+  border-radius: 22px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -361,6 +493,20 @@ dt {
   font-size: 0.9rem;
   font-family: "Trebuchet MS", sans-serif;
   color: var(--accent-warm);
+}
+
+.timeline h3 {
+  margin-top: 0.6rem;
+  margin-bottom: 0.35rem;
+  font-size: 1.3rem;
+}
+
+.promise-box {
+  text-align: center;
+  padding: 2.5rem;
+  background:
+    radial-gradient(circle at top center, rgba(198, 115, 55, 0.14), transparent 28%),
+    rgba(251, 244, 232, 0.8);
 }
 
 .product-layout {
@@ -394,7 +540,8 @@ dt {
   .contact-shell,
   .footer-grid,
   .card-grid,
-  .stack-grid {
+  .stack-grid,
+  .shelf-grid {
     grid-template-columns: 1fr;
   }
 
@@ -402,12 +549,17 @@ dt {
     align-items: start;
     flex-direction: column;
   }
+
+  .shelf-art {
+    grid-template-columns: 1fr 1fr;
+    min-height: 240px;
+  }
 }
 
 @media (max-width: 640px) {
   .hero-section,
   .section {
-    padding: 3.25rem 0;
+    padding: 3.4rem 0;
   }
 
   .nav-shell {
@@ -416,8 +568,13 @@ dt {
     padding: 0.9rem 0;
   }
 
-  .stat-grid {
+  .stat-grid,
+  .shelf-art {
     grid-template-columns: 1fr;
+  }
+
+  .shelf-card-sun {
+    grid-column: auto;
   }
 
   .hero-actions,
@@ -431,5 +588,9 @@ dt {
   .nav-link,
   .language-button {
     width: 100%;
+  }
+
+  .product-visual {
+    min-height: 140px;
   }
 }
