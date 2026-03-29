@@ -11,12 +11,14 @@ const navItems = {
     { href: "/", label: "Inicio" },
     { href: "/products", label: "Produtos" },
     { href: "/about", label: "Marca" },
+    { href: "/checkout", label: "Pedido" },
     { href: "/contact", label: "Contato" }
   ],
   ja: [
     { href: "/", label: "ホーム" },
     { href: "/products", label: "商品一覧" },
     { href: "/about", label: "ブランド" },
+    { href: "/checkout", label: "注文" },
     { href: "/contact", label: "お問い合わせ" }
   ]
 } as const;

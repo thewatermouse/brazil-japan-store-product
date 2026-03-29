@@ -11,6 +11,8 @@ export type Product = {
   badge: LocalizedText;
   tastingNotes?: LocalizedText;
   usage: LocalizedText;
+  benefits: LocalizedText[];
+  faq: { question: LocalizedText; answer: LocalizedText }[];
   priceYen: number;
   weight: string;
   shelfLife: string;
@@ -41,6 +43,42 @@ export const products: Product[] = [
       pt: "Uso sugerido: algumas gotas diluidas em agua, cha ou mel.",
       ja: "おすすめの使い方: 水、お茶、はちみつに数滴加えてお召し上がりください。"
     },
+    benefits: [
+      {
+        pt: "Frasco pequeno, facil de guardar e enviar.",
+        ja: "小さなボトルで保管しやすく、配送にも向いています。"
+      },
+      {
+        pt: "Ritual simples para o dia a dia.",
+        ja: "毎日に取り入れやすいシンプルな習慣です。"
+      },
+      {
+        pt: "Origem clara em Minas Gerais.",
+        ja: "ミナスジェライス州産という明確な産地。"
+      }
+    ],
+    faq: [
+      {
+        question: {
+          pt: "Qual o melhor momento para consumir?",
+          ja: "いつ飲むのがおすすめですか?"
+        },
+        answer: {
+          pt: "Muita gente usa pela manha ou ao longo do dia, diluido em alguma bebida.",
+          ja: "朝や日中に、水やお茶に混ぜて取り入れる方が多いです。"
+        }
+      },
+      {
+        question: {
+          pt: "E forte no sabor?",
+          ja: "味は強いですか?"
+        },
+        answer: {
+          pt: "Tem perfil vegetal marcante, por isso muita gente prefere diluir antes de consumir.",
+          ja: "植物感のあるしっかりした個性があるため、飲み物に混ぜる使い方が人気です。"
+        }
+      }
+    ],
     priceYen: 4800,
     weight: "30ml",
     shelfLife: "24 meses",
@@ -76,6 +114,42 @@ export const products: Product[] = [
       pt: "Perfeito para coado, prensa francesa e espresso suave.",
       ja: "ハンドドリップ、フレンチプレス、マイルドなエスプレッソに最適です。"
     },
+    benefits: [
+      {
+        pt: "Perfil brasileiro classico, facil de agradar.",
+        ja: "親しみやすいブラジルらしい味わい。"
+      },
+      {
+        pt: "Bom para presente e recompra.",
+        ja: "ギフトにもリピート購入にも向いています。"
+      },
+      {
+        pt: "Funciona bem em varios metodos de preparo.",
+        ja: "さまざまな抽出方法で楽しめます。"
+      }
+    ],
+    faq: [
+      {
+        question: {
+          pt: "Esse cafe e mais doce ou mais acido?",
+          ja: "酸味より甘さが強いですか?"
+        },
+        answer: {
+          pt: "A proposta e destacar docura, chocolate e castanha, com acidez mais discreta.",
+          ja: "酸味よりも甘さとチョコ感を感じやすいバランスです。"
+        }
+      },
+      {
+        question: {
+          pt: "Serve para filtro?",
+          ja: "ハンドドリップ向きですか?"
+        },
+        answer: {
+          pt: "Sim. E um cafe versatil, bom para filtro, prensa e espresso suave.",
+          ja: "はい。ハンドドリップ、フレンチプレス、やさしいエスプレッソまで幅広く使えます。"
+        }
+      }
+    ],
     priceYen: 2400,
     weight: "200g",
     shelfLife: "12 meses",
@@ -107,6 +181,42 @@ export const products: Product[] = [
       pt: "Misture com iogurte, leite, banana ou granola.",
       ja: "ヨーグルト、ミルク、バナナ、グラノーラと合わせてお楽しみください。"
     },
+    benefits: [
+      {
+        pt: "Leva o imaginario do acai sem precisar de congelados.",
+        ja: "冷凍不要でアサイーの魅力を楽しめます。"
+      },
+      {
+        pt: "Versatil para bowls, smoothies e receitas.",
+        ja: "ボウルやスムージー、レシピにも使いやすいです。"
+      },
+      {
+        pt: "Formato leve, pratico e facil de armazenar.",
+        ja: "軽量で保管しやすく、扱いやすい形です。"
+      }
+    ],
+    faq: [
+      {
+        question: {
+          pt: "Precisa de refrigeracao?",
+          ja: "冷蔵は必要ですか?"
+        },
+        answer: {
+          pt: "Nao. E justamente uma alternativa de acai para ecommerce sem cadeia fria.",
+          ja: "不要です。常温流通しやすい形として提案しています。"
+        }
+      },
+      {
+        question: {
+          pt: "Como usar no cafe da manha?",
+          ja: "朝食ではどう使えますか?"
+        },
+        answer: {
+          pt: "Com iogurte, banana, leite ou granola, ele entra bem em rotinas simples.",
+          ja: "ヨーグルト、バナナ、ミルク、グラノーラと合わせる使い方が人気です。"
+        }
+      }
+    ],
     priceYen: 3200,
     weight: "100g",
     shelfLife: "18 meses",

@@ -9,44 +9,60 @@ import { products } from "@/data/products";
 const copy = {
   pt: {
     kicker: "Brasil vivo, em pequenos rituais",
-    title: "Sabores e extratos do Brasil com origem real, agora para o Japão.",
+    title: "Sabores e extratos do Brasil com origem real, agora para o Japao.",
     description:
-      "Café do Cerrado, própolis verde de Minas e açaí da Amazônia. Uma loja pensada para quem quer comprar produtos brasileiros com história, contato com a natureza e uso no dia a dia.",
+      "Cafe do Cerrado, propolis verde de Minas e acai da Amazonia. Uma loja pensada para quem quer comprar produtos brasileiros com historia, contato com a natureza e uso no dia a dia.",
     primaryCta: "Explorar produtos",
-    secondaryCta: "Conhecer a seleção",
+    secondaryCta: "Fazer um pedido",
     panelTitle: "O que define a loja",
     highlights: [
-      "Ingredientes ligados a território, clima e colheita",
-      "Produtos estáveis, leves e viáveis para envio internacional",
-      "Experiência bilíngue para aproximar marca e consumidor final"
+      "Ingredientes ligados a territorio, clima e colheita",
+      "Produtos estaveis, leves e viaveis para envio internacional",
+      "Experiencia bilingue para aproximar marca e consumidor final"
     ],
     shelfTitle: "Da floresta, da fazenda e do cotidiano brasileiro",
     shelfText:
-      "Não é uma vitrine genérica de importados. Cada item entra aqui porque tem origem clara, ritual simples de consumo e personalidade brasileira perceptível no sabor, no aroma ou no uso.",
-    shelfItems: ["Minas Gerais", "Cerrado Mineiro", "Pará"],
-    featureEyebrow: "Seleção inicial",
-    featureTitle: "Produtos para começar bem a loja",
-    featureLink: "Ver catálogo completo",
+      "Nao e uma vitrine generica de importados. Cada item entra aqui porque tem origem clara, ritual simples de consumo e personalidade brasileira perceptivel no sabor, no aroma ou no uso.",
+    shelfItems: ["Minas Gerais", "Cerrado Mineiro", "Para"],
+    featureEyebrow: "Selecao inicial",
+    featureTitle: "Produtos para comecar bem a loja",
+    featureLink: "Ver catalogo completo",
     ritualEyebrow: "Como essa marca se sente",
-    ritualTitle: "Natureza brasileira sem fantasia turística.",
+    ritualTitle: "Natureza brasileira sem fantasia turistica.",
     ritualItems: [
       {
-        title: "Matéria-prima com lugar",
-        text: "A origem não entra como enfeite. Ela é parte do produto, da decisão de compra e da confiança de quem recebe."
+        title: "Materia-prima com lugar",
+        text: "A origem nao entra como enfeite. Ela e parte do produto, da decisao de compra e da confianca de quem recebe."
       },
       {
         title: "Uso simples no dia a dia",
-        text: "Produtos pequenos, úteis e repetíveis. Nada depende de ocasião especial para fazer sentido."
+        text: "Produtos pequenos, uteis e repetiveis. Nada depende de ocasiao especial para fazer sentido."
       },
       {
-        title: "Calor humano, não discurso institucional",
-        text: "A linguagem da marca precisa parecer próxima, honesta e segura, não apresentação de trading company."
+        title: "Calor humano, nao discurso institucional",
+        text: "A linguagem da marca precisa parecer proxima, honesta e segura, nao apresentacao de trading company."
+      }
+    ],
+    journalEyebrow: "Cenas da marca",
+    journalTitle: "O que queremos que o cliente veja quando entra aqui.",
+    journalCards: [
+      {
+        title: "Um cafe que lembra terra quente e torra fresca",
+        text: "A experiencia precisa comecar pelo desejo, nao pela planilha."
+      },
+      {
+        title: "Um propolis que parece remedio da mata, so que belo",
+        text: "Bem-estar com origem e uso cotidiano, sem cara de produto generico."
+      },
+      {
+        title: "Um acai que nao depende de freezer para ter alma",
+        text: "Brasil natural, adaptado a uma rotina urbana no Japao."
       }
     ],
     promiseEyebrow: "Compromisso da loja",
-    promiseTitle: "Comprar com clareza: o que é, de onde vem e como usar.",
+    promiseTitle: "Comprar com clareza: o que e, de onde vem e como usar.",
     promiseText:
-      "A proposta comercial é direta: poucos produtos, boa explicação, identidade forte e espaço para crescer com o que realmente vender."
+      "A proposta comercial e direta: poucos produtos, boa explicacao, identidade forte e espaco para crescer com o que realmente vender."
   },
   ja: {
     kicker: "ブラジルの自然を、毎日の小さな習慣へ",
@@ -54,7 +70,7 @@ const copy = {
     description:
       "セラードのコーヒー、ミナスのグリーンプロポリス、アマゾンのアサイー。自然とのつながりや産地の空気を感じられる商品を、日本のお客様向けに丁寧に届けます。",
     primaryCta: "商品を見る",
-    secondaryCta: "セレクションを知る",
+    secondaryCta: "注文する",
     panelTitle: "このストアの考え方",
     highlights: [
       "土地・気候・収穫背景が感じられる原料",
@@ -84,6 +100,22 @@ const copy = {
         text: "企業説明ではなく、実際に買う人に寄り添う言葉で商品を届けます。"
       }
     ],
+    journalEyebrow: "ストアに入ったときの印象",
+    journalTitle: "見せたいのは、自然が感じられるブラジルの手ざわりです。",
+    journalCards: [
+      {
+        title: "熱を感じる土と焙煎の香り",
+        text: "最初に伝わるべきなのは、理屈より先に来るおいしさの気配です。"
+      },
+      {
+        title: "森の力を感じるプロポリス",
+        text: "日常で使える自然由来の存在感を、きちんと美しく見せます。"
+      },
+      {
+        title: "冷凍に頼らないアサイーの新しい見せ方",
+        text: "都市生活にもなじむブラジルらしさとして提案します。"
+      }
+    ],
     promiseEyebrow: "この店の約束",
     promiseTitle: "何を買うのか、どこから来たのか、どう楽しめるのかを明確に。",
     promiseText:
@@ -108,7 +140,7 @@ export function HomeContent() {
               <Link href="/products" className="button-primary">
                 {t.primaryCta}
               </Link>
-              <Link href="/about" className="button-secondary">
+              <Link href="/checkout" className="button-secondary">
                 {t.secondaryCta}
               </Link>
             </div>
@@ -160,6 +192,25 @@ export function HomeContent() {
           <div className="card-grid">
             {featuredProducts.map((product) => (
               <ProductCard key={product.slug} product={product} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section journal-section">
+        <div className="container">
+          <div className="section-heading narrow">
+            <div>
+              <p className="eyebrow">{t.journalEyebrow}</p>
+              <h2>{t.journalTitle}</h2>
+            </div>
+          </div>
+          <div className="journal-grid">
+            {t.journalCards.map((card) => (
+              <article key={card.title} className="journal-card">
+                <h3>{card.title}</h3>
+                <p>{card.text}</p>
+              </article>
             ))}
           </div>
         </div>
