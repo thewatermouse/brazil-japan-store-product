@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+Disallow: /checkout/
+Disallow: /ja/checkout/
+
+Sitemap: https://thewatermouse.github.io/brazil-japan-store-product/sitemap.xml

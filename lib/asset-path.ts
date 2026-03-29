@@ -1,6 +1,5 @@
-const repoBasePath =
-  process.env.NODE_ENV === "production" ? "/brazil-japan-store-product" : "";
+import { siteBasePath } from "@/lib/site";
 
 export function assetPath(path: string) {
-  return `${repoBasePath}${path}`;
+  return `${siteBasePath}${path}`;
 }

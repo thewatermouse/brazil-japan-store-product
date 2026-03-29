@@ -10,6 +10,7 @@ import {
 } from "react";
 
 import type { Language } from "@/data/products";
+import { getLocaleFromPath } from "@/lib/site";
 
 type LanguageContextValue = {
   language: Language;
@@ -22,6 +23,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>("pt");
 
   useEffect(() => {
+    const pathLanguage = getLocaleFromPath(window.location.pathname);
+    if (pathLanguage === "ja") {
+      setLanguage("ja");
+      window.localStorage.setItem("store-language", "ja");
+      return;
+    }
+
     const savedLanguage = window.localStorage.getItem("store-language");
     if (savedLanguage === "pt" || savedLanguage === "ja") {
       setLanguage(savedLanguage);

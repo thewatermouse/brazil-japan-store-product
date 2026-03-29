@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useLanguage } from "@/components/LanguageProvider";
+import type { Language } from "@/data/products";
 import { shippingEstimateTiers } from "@/data/store";
 
 const copy = {
@@ -36,8 +37,9 @@ const copy = {
   }
 } as const;
 
-export function ShippingContent() {
-  const { language } = useLanguage();
+export function ShippingContent({ language: forcedLanguage }: { language?: Language }) {
+  const { language: contextLanguage } = useLanguage();
+  const language = forcedLanguage ?? contextLanguage;
   const t = copy[language];
 
   return (

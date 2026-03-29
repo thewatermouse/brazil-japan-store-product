@@ -3,6 +3,8 @@
 import Link from "next/link";
 
 import { useLanguage } from "@/components/LanguageProvider";
+import type { Language } from "@/data/products";
+import { localizedPath } from "@/lib/site";
 import { products } from "@/data/products";
 
 const copy = {
@@ -54,8 +56,9 @@ const copy = {
   }
 } as const;
 
-export function SetsContent() {
-  const { language } = useLanguage();
+export function SetsContent({ language: forcedLanguage }: { language?: Language }) {
+  const { language: contextLanguage } = useLanguage();
+  const language = forcedLanguage ?? contextLanguage;
   const t = copy[language];
 
   return (
@@ -80,7 +83,7 @@ export function SetsContent() {
                 ))}
               </ul>
               <p className="lead">{setItem.price}</p>
-              <Link href="/checkout" className="text-link">{t.cta}</Link>
+          <Link href={localizedPath("/checkout", language)} className="text-link">{t.cta}</Link>
             </article>
           ))}
         </div>

@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useLanguage } from "@/components/LanguageProvider";
+import type { Language } from "@/data/products";
 
 const copy = {
   pt: {
@@ -23,8 +24,9 @@ const copy = {
   }
 } as const;
 
-export function FaqContent() {
-  const { language } = useLanguage();
+export function FaqContent({ language: forcedLanguage }: { language?: Language }) {
+  const { language: contextLanguage } = useLanguage();
+  const language = forcedLanguage ?? contextLanguage;
   const t = copy[language];
 
   return (

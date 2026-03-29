@@ -2,7 +2,7 @@
 
 import { ProductCard } from "@/components/ProductCard";
 import { useLanguage } from "@/components/LanguageProvider";
-import { products } from "@/data/products";
+import { products, type Language } from "@/data/products";
 
 const copy = {
   pt: {
@@ -19,8 +19,9 @@ const copy = {
   }
 } as const;
 
-export function ProductsContent() {
-  const { language } = useLanguage();
+export function ProductsContent({ language: forcedLanguage }: { language?: Language }) {
+  const { language: contextLanguage } = useLanguage();
+  const language = forcedLanguage ?? contextLanguage;
   const t = copy[language];
 
   return (
@@ -36,7 +37,7 @@ export function ProductsContent() {
 
         <div className="card-grid">
           {products.map((product) => (
-            <ProductCard key={product.slug} product={product} />
+            <ProductCard key={product.slug} product={product} language={language} />
           ))}
         </div>
       </div>

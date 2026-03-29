@@ -1,0 +1,17 @@
+{
+  "name": "Nippon Brasil Select",
+  "short_name": "Brasil Select",
+  "description": "Bilingual storefront for Brazilian products sold to customers in Japan.",
+  "start_url": "/brazil-japan-store-product/",
+  "scope": "/brazil-japan-store-product/",
+  "display": "standalone",
+  "background_color": "#efe5d3",
+  "theme_color": "#28553f",
+  "icons": [
+    {
+      "src": "/brazil-japan-store-product/icons/store-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -3,6 +3,7 @@
 import Link from "next/link";
 
 import { useLanguage } from "@/components/LanguageProvider";
+import { localizedPath } from "@/lib/site";
 
 export function Footer() {
   const { language } = useLanguage();
@@ -48,7 +49,9 @@ export function Footer() {
           <p className="eyebrow">{t.launch}</p>
           <ul className="footer-list footer-links-list">
             {t.items.map((item) => (
-              <li key={item.href}><Link href={item.href}>{item.label}</Link></li>
+              <li key={item.href}>
+                <Link href={localizedPath(item.href, language)}>{item.label}</Link>
+              </li>
             ))}
           </ul>
         </div>

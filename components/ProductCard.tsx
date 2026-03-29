@@ -3,11 +3,13 @@
 import Link from "next/link";
 
 import { useLanguage } from "@/components/LanguageProvider";
-import type { Product } from "@/data/products";
+import type { Language, Product } from "@/data/products";
 import { assetPath } from "@/lib/asset-path";
+import { localizedPath } from "@/lib/site";
 
 type ProductCardProps = {
   product: Product;
+  language?: Language;
 };
 
 const productTones = {
@@ -16,8 +18,9 @@ const productTones = {
   "acai-energy-powder": "tone-acai"
 } as const;
 
-export function ProductCard({ product }: ProductCardProps) {
-  const { language } = useLanguage();
+export function ProductCard({ product, language: forcedLanguage }: ProductCardProps) {
+  const { language: contextLanguage } = useLanguage();
+  const language = forcedLanguage ?? contextLanguage;
   const toneClass = productTones[product.slug as keyof typeof productTones] ?? "";
 
   return (
@@ -42,7 +45,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <dd>{product.origin[language]}</dd>
         </div>
       </dl>
-      <Link href={`/products/${product.slug}`} className="text-link">
+      <Link href={localizedPath(`/products/${product.slug}`, language)} className="text-link">
         {language === "pt" ? "Ver produto" : "商品を見る"}
       </Link>
     </article>

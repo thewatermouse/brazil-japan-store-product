@@ -20,10 +20,12 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+body, button, input, select, textarea { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
   color: var(--text);
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top left, rgba(198, 115, 55, 0.18), transparent 26%),
     radial-gradient(circle at 80% 12%, rgba(40, 85, 63, 0.18), transparent 24%),
@@ -32,8 +34,9 @@ body {
 }
 
 a { color: inherit; text-decoration: none; }
+img { max-width: 100%; height: auto; display: block; }
 main { min-height: calc(100vh - 180px); }
-.container { width: min(calc(100% - 2rem), var(--container)); margin: 0 auto; }
+.container { width: min(calc(100% - 1.5rem), var(--container)); margin: 0 auto; }
 .site-header {
   position: sticky; top: 0; z-index: 20; backdrop-filter: blur(18px);
   background: rgba(246, 239, 223, 0.72); border-bottom: 1px solid var(--line);
@@ -46,7 +49,7 @@ main { min-height: calc(100vh - 180px); }
 .nav-link { padding: 0.7rem 1rem; border-radius: 999px; color: var(--muted); transition: 160ms ease; }
 .nav-link.active, .nav-link:hover { color: var(--text); background: rgba(40, 85, 63, 0.08); }
 .language-switch { display: flex; gap: 0.4rem; padding: 0.28rem; border-radius: 999px; border: 1px solid var(--line); background: rgba(255, 250, 243, 0.8); }
-.language-button { border: 0; background: transparent; color: var(--muted); border-radius: 999px; padding: 0.55rem 0.95rem; font-family: "Trebuchet MS", sans-serif; font-weight: 700; cursor: pointer; }
+.language-button { display: inline-flex; align-items: center; justify-content: center; border: 0; background: transparent; color: var(--muted); border-radius: 999px; padding: 0.7rem 1rem; min-height: 44px; font-family: "Trebuchet MS", sans-serif; font-weight: 700; cursor: pointer; }
 .language-button.active { background: var(--accent); color: #fff; }
 .hero-section, .section { padding: 5rem 0; }
 .hero-grid, .operation-grid, .product-layout, .contact-shell, .footer-grid, .shelf-grid, .checkout-grid, .product-hero-shell { display: grid; gap: 1.5rem; }
@@ -57,7 +60,7 @@ main { min-height: calc(100vh - 180px); }
 .hero-section h1 { font-size: clamp(3.2rem, 7vw, 6.4rem); max-width: 10ch; letter-spacing: -0.04em; }
 .section h1 { font-size: clamp(2.5rem, 4vw, 4.2rem); }
 .section h2 { font-size: clamp(2rem, 3vw, 3.2rem); }
-.hero-copy, .lead, .section p, li, dd, .field-block span { font-family: "Trebuchet MS", sans-serif; font-size: 1.06rem; line-height: 1.75; color: var(--muted); }
+.hero-copy, .lead, .section p, li, dd, .field-block span { font-family: "Trebuchet MS", sans-serif; font-size: clamp(1rem, 2vw, 1.06rem); line-height: 1.75; color: var(--muted); }
 .hero-copy { max-width: 55ch; }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
 .button-primary, .button-secondary, .hero-panel, .product-card, .product-detail-card, .info-panel, .contact-card, .step-card, .promise-box, .shelf-copy, .shelf-art, .checkout-summary, .checkout-form-shell, .product-section-card, .journal-card, .benefit-card, .ritual-box, .product-stage { border-radius: var(--radius); }
@@ -126,7 +129,7 @@ main { min-height: calc(100vh - 180px); }
 .faq-item h3 { font-size: 1.3rem; margin-bottom: 0.45rem; }
 .checkout-form-shell, .checkout-summary { background: rgba(251, 244, 232, 0.84); }
 .field-block { display: grid; gap: 0.45rem; margin-bottom: 1rem; }
-.field-input { width: 100%; border-radius: 18px; border: 1px solid var(--line); background: rgba(255, 250, 243, 0.9); padding: 0.95rem 1rem; color: var(--text); font: inherit; }
+.field-input { width: 100%; min-height: 48px; border-radius: 18px; border: 1px solid var(--line); background: rgba(255, 250, 243, 0.9); padding: 0.95rem 1rem; color: var(--text); font: inherit; font-size: 16px; }
 .field-textarea { min-height: 140px; resize: vertical; }
 .checkout-product-card { padding: 1.2rem; border-radius: 22px; background: linear-gradient(180deg, rgba(251, 244, 232, 0.92), rgba(233, 220, 202, 0.92)); border: 1px solid var(--line); }
 .checkout-note { margin: 1rem 0 0; font-family: "Trebuchet MS", sans-serif; color: var(--muted); }
@@ -149,7 +152,22 @@ main { min-height: calc(100vh - 180px); }
   .shelf-card-sun { grid-column: auto; }
   .hero-actions, .nav-links, .language-switch { width: 100%; }
   .button-primary, .button-secondary, .nav-link, .language-button { width: 100%; }
+  .nav-links { gap: 0.4rem; }
+  .site-header { position: static; }
   .product-visual, .product-stage { min-height: 140px; }
+}
+
+@media (max-width: 480px) {
+  .container { width: min(calc(100% - 1rem), var(--container)); }
+  .hero-section h1 { font-size: clamp(2.4rem, 13vw, 3.4rem); max-width: 12ch; }
+  .section h1 { font-size: clamp(2rem, 9vw, 2.8rem); }
+  .section h2 { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+  .hero-panel, .product-card, .product-detail-card, .info-panel, .contact-card, .step-card, .promise-box, .shelf-copy, .shelf-art, .checkout-summary, .checkout-form-shell, .product-section-card, .journal-card, .benefit-card, .ritual-box, .product-stage { padding: 1.15rem; border-radius: 22px; }
+  .checkout-line-item { grid-template-columns: 72px 1fr; }
+  .checkout-line-image { width: 72px; height: 72px; }
+  .cart-line-meta, .shipping-table-row, .spec-list div, .detail-list div { grid-template-columns: 1fr; display: grid; }
+  .product-stage-image { margin-bottom: 1rem; }
+  .site-footer { margin-inline: 0.5rem; }
 }
 
 .product-visual-image {

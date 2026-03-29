@@ -3,6 +3,8 @@
 import Link from "next/link";
 
 import { useLanguage } from "@/components/LanguageProvider";
+import type { Language } from "@/data/products";
+import { localizedPath } from "@/lib/site";
 
 const copy = {
   pt: {
@@ -35,8 +37,9 @@ const copy = {
   }
 } as const;
 
-export function ContactContent() {
-  const { language } = useLanguage();
+export function ContactContent({ language: forcedLanguage }: { language?: Language }) {
+  const { language: contextLanguage } = useLanguage();
+  const language = forcedLanguage ?? contextLanguage;
   const t = copy[language];
 
   return (
@@ -46,7 +49,7 @@ export function ContactContent() {
           <p className="eyebrow">{t.eyebrow}</p>
           <h1>{t.title}</h1>
           <p className="lead">{t.lead}</p>
-          <Link href="/checkout" className="button-primary">{t.cta}</Link>
+          <Link href={localizedPath("/checkout", language)} className="button-primary">{t.cta}</Link>
         </div>
 
         <div className="contact-card">

@@ -4,7 +4,8 @@ import Link from "next/link";
 
 import { ProductCard } from "@/components/ProductCard";
 import { useLanguage } from "@/components/LanguageProvider";
-import { products } from "@/data/products";
+import { products, type Language } from "@/data/products";
+import { localizedPath } from "@/lib/site";
 
 const copy = {
   pt: {
@@ -123,8 +124,9 @@ const copy = {
   }
 } as const;
 
-export function HomeContent() {
-  const { language } = useLanguage();
+export function HomeContent({ language: forcedLanguage }: { language?: Language }) {
+  const { language: contextLanguage } = useLanguage();
+  const language = forcedLanguage ?? contextLanguage;
   const featuredProducts = products.slice(0, 3);
   const t = copy[language];
 
@@ -137,10 +139,10 @@ export function HomeContent() {
             <h1>{t.title}</h1>
             <p className="hero-copy">{t.description}</p>
             <div className="hero-actions">
-              <Link href="/products" className="button-primary">
+              <Link href={localizedPath("/products", language)} className="button-primary">
                 {t.primaryCta}
               </Link>
-              <Link href="/checkout" className="button-secondary">
+              <Link href={localizedPath("/checkout", language)} className="button-secondary">
                 {t.secondaryCta}
               </Link>
             </div>
@@ -184,14 +186,14 @@ export function HomeContent() {
               <p className="eyebrow">{t.featureEyebrow}</p>
               <h2>{t.featureTitle}</h2>
             </div>
-            <Link href="/products" className="text-link">
+            <Link href={localizedPath("/products", language)} className="text-link">
               {t.featureLink}
             </Link>
           </div>
 
           <div className="card-grid">
             {featuredProducts.map((product) => (
-              <ProductCard key={product.slug} product={product} />
+              <ProductCard key={product.slug} product={product} language={language} />
             ))}
           </div>
         </div>

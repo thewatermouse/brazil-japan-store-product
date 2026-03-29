@@ -4,17 +4,19 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 import { useLanguage } from "@/components/LanguageProvider";
-import { getProductBySlug, products } from "@/data/products";
+import { getProductBySlug, products, type Language } from "@/data/products";
 import { shippingEstimateTiers, storeContact } from "@/data/store";
 import { assetPath } from "@/lib/asset-path";
+import { localizedPath } from "@/lib/site";
 
 type CartLine = {
   slug: string;
   quantity: number;
 };
 
-export function CheckoutContent() {
-  const { language } = useLanguage();
+export function CheckoutContent({ language: forcedLanguage }: { language?: Language }) {
+  const { language: contextLanguage } = useLanguage();
+  const language = forcedLanguage ?? contextLanguage;
   const [cart, setCart] = useState<CartLine[]>([{ slug: products[0].slug, quantity: 1 }]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -177,7 +179,11 @@ export function CheckoutContent() {
                         next[index] = { ...next[index], slug: event.target.value };
                         setCart(next);
                         if (index === 0) {
-                          window.history.replaceState({}, "", `/checkout?product=${event.target.value}`);
+                          window.history.replaceState(
+                            {},
+                            "",
+                            `${localizedPath("/checkout", language)}?product=${event.target.value}`
+                          );
                         }
                       }}
                     >
@@ -256,7 +262,7 @@ export function CheckoutContent() {
           <div className="hero-actions checkout-actions">
             <a href={emailHref} className="button-primary">{t.email}</a>
             {storeContact.whatsappNumber ? <a href={whatsappHref} className="button-secondary" target="_blank" rel="noreferrer">{t.whatsapp}</a> : null}
-            <Link href="/products" className="text-link">{t.browse}</Link>
+            <Link href={localizedPath("/products", language)} className="text-link">{t.browse}</Link>
           </div>
         </aside>
       </div>

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 
 import { useLanguage } from "@/components/LanguageProvider";
 import { LanguageSwitch } from "@/components/LanguageSwitch";
+import { localizedPath } from "@/lib/site";
 
 const navItems = {
   pt: [
@@ -30,7 +31,7 @@ export function Header() {
   return (
     <header className="site-header">
       <div className="container nav-shell">
-        <Link href="/" className="brand-mark">
+        <Link href={localizedPath("/", language)} className="brand-mark">
           <span className="brand-kicker">
             {language === "pt" ? "Brasil para o Japao" : "Brazil to Japan"}
           </span>
@@ -39,11 +40,12 @@ export function Header() {
 
         <nav className="nav-links" aria-label="Main navigation">
           {navItems[language].map((item) => {
-            const active = pathname === item.href;
+            const itemPath = localizedPath(item.href, language);
+            const active = pathname === itemPath;
             return (
               <Link
                 key={item.href}
-                href={item.href}
+                href={itemPath}
                 className={active ? "nav-link active" : "nav-link"}
               >
                 {item.label}

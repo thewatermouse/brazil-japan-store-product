@@ -1,0 +1,71 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+
+import { ProductDetailContent } from "@/components/ProductDetailContent";
+import { StructuredData } from "@/components/StructuredData";
+import { getProductBySlug, products } from "@/data/products";
+import { buildMetadata } from "@/lib/metadata";
+import { localizedSiteUrl, siteUrl } from "@/lib/site";
+
+type ProductPageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export function generateStaticParams() {
+  return products.map((product) => ({
+    slug: product.slug
+  }));
+}
+
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const product = getProductBySlug(slug);
+
+  if (!product) {
+    return {};
+  }
+
+  return buildMetadata({
+    title: product.name.ja,
+    description: product.shortDescription.ja,
+    path: `/products/${product.slug}`,
+    language: "ja"
+  });
+}
+
+export default async function JapaneseProductPage({ params }: ProductPageProps) {
+  const { slug } = await params;
+  const product = getProductBySlug(slug);
+
+  if (!product) {
+    notFound();
+  }
+
+  return (
+    <>
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: product.name.ja,
+          description: product.shortDescription.ja,
+          image: `${siteUrl}${product.image}`,
+          sku: product.slug,
+          brand: {
+            "@type": "Brand",
+            name: "Nippon Brasil Select"
+          },
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "JPY",
+            price: product.priceYen,
+            availability: "https://schema.org/InStock",
+            url: localizedSiteUrl(`/products/${product.slug}`, "ja")
+          },
+          countryOfOrigin: "BR"
+        }}
+      />
+      <ProductDetailContent product={product} language="ja" />
+    </>
+  );
+}

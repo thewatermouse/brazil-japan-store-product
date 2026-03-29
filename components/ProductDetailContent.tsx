@@ -3,8 +3,9 @@
 import Link from "next/link";
 
 import { useLanguage } from "@/components/LanguageProvider";
-import type { Product } from "@/data/products";
+import type { Language, Product } from "@/data/products";
 import { assetPath } from "@/lib/asset-path";
+import { localizedPath } from "@/lib/site";
 
 const categoryTone = {
   propolis: { pt: "Extrato da mata brasileira", ja: "ブラジルの森から生まれた滴" },
@@ -12,8 +13,15 @@ const categoryTone = {
   wellness: { pt: "Energia de fruta e floresta", ja: "果実と自然のエネルギー" }
 } as const;
 
-export function ProductDetailContent({ product }: { product: Product }) {
-  const { language } = useLanguage();
+export function ProductDetailContent({
+  product,
+  language: forcedLanguage
+}: {
+  product: Product;
+  language?: Language;
+}) {
+  const { language: contextLanguage } = useLanguage();
+  const language = forcedLanguage ?? contextLanguage;
 
   const copy = {
     pt: {
@@ -63,10 +71,13 @@ export function ProductDetailContent({ product }: { product: Product }) {
             <span className="pill">{product.badge[language]}</span>
             <p>{product.story[language]}</p>
             <div className="hero-actions">
-              <Link href={`/checkout?product=${product.slug}`} className="button-primary">
+              <Link
+                href={`${localizedPath("/checkout", language)}?product=${product.slug}`}
+                className="button-primary"
+              >
                 {t.buy}
               </Link>
-              <Link href="/products" className="button-secondary">
+              <Link href={localizedPath("/products", language)} className="button-secondary">
                 {t.back}
               </Link>
             </div>
@@ -81,7 +92,12 @@ export function ProductDetailContent({ product }: { product: Product }) {
             <div><dt>{t.shelfLife}</dt><dd>{product.shelfLife}</dd></div>
             <div><dt>{t.origin}</dt><dd>{product.origin[language]}</dd></div>
           </dl>
-          <Link href={`/checkout?product=${product.slug}`} className="button-primary button-block">{t.buy}</Link>
+          <Link
+            href={`${localizedPath("/checkout", language)}?product=${product.slug}`}
+            className="button-primary button-block"
+          >
+            {t.buy}
+          </Link>
         </aside>
       </div>
 
