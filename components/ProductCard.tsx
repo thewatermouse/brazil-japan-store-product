@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { useLanguage } from "@/components/LanguageProvider";
 import type { Product } from "@/data/products";
+import { assetPath } from "@/lib/asset-path";
 
 type ProductCardProps = {
   product: Product;
@@ -22,7 +23,7 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="product-card product-card-rich">
       <div className={`product-visual ${toneClass}`}>
-        <img src={product.image} alt={product.name[language]} className="product-visual-image" />
+        <img src={assetPath(product.image)} alt={product.name[language]} className="product-visual-image" />
         <span>{product.name[language]}</span>
       </div>
       <div className="product-meta">

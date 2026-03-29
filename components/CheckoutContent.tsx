@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getProductBySlug, products } from "@/data/products";
 import { shippingEstimateTiers, storeContact } from "@/data/store";
+import { assetPath } from "@/lib/asset-path";
 
 type CartLine = {
   slug: string;
@@ -235,7 +236,7 @@ export function CheckoutContent() {
             <div className="checkout-line-list">
               {validLines.map((line, index) => (
                 <div key={`${line.slug}-${index}`} className="checkout-line-item">
-                  <img src={line.product.image} alt={line.product.name[language]} className="checkout-line-image" />
+                  <img src={assetPath(line.product.image)} alt={line.product.name[language]} className="checkout-line-image" />
                   <div>
                     <strong>{line.product.name[language]}</strong>
                     <p>{line.quantity} x JPY {line.product.priceYen.toLocaleString()}</p>

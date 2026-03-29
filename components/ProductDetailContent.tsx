@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { useLanguage } from "@/components/LanguageProvider";
 import type { Product } from "@/data/products";
+import { assetPath } from "@/lib/asset-path";
 
 const categoryTone = {
   propolis: { pt: "Extrato da mata brasileira", ja: "ブラジルの森から生まれた滴" },
@@ -53,7 +54,7 @@ export function ProductDetailContent({ product }: { product: Product }) {
         <div className="product-storyboard">
           <div className={`product-stage tone-${product.category}`}>
             <span className="product-stage-kicker">{categoryTone[product.category][language]}</span>
-            <img src={product.image} alt={product.name[language]} className="product-stage-image" />
+            <img src={assetPath(product.image)} alt={product.name[language]} className="product-stage-image" />
             <h1>{product.name[language]}</h1>
             <p className="lead">{product.shortDescription[language]}</p>
           </div>
