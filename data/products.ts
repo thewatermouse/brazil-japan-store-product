@@ -79,7 +79,7 @@ export const products: Product[] = [
         }
       }
     ],
-    priceYen: 4800,
+    priceYen: 3980,
     weight: "30ml",
     shelfLife: "24 meses",
     origin: {
@@ -150,7 +150,7 @@ export const products: Product[] = [
         }
       }
     ],
-    priceYen: 2400,
+    priceYen: 1680,
     weight: "200g",
     shelfLife: "12 meses",
     origin: {
@@ -217,7 +217,7 @@ export const products: Product[] = [
         }
       }
     ],
-    priceYen: 3200,
+    priceYen: 2280,
     weight: "100g",
     shelfLife: "18 meses",
     origin: {

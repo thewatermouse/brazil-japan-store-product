@@ -153,6 +153,12 @@ export function CheckoutContent() {
             </dl>
           </div>
 
+          <p className="checkout-note">
+            {language === "pt"
+              ? "Depois de enviar, a loja confirma estoque, frete e forma de pagamento."
+              : "送信後、在庫・送料・決済方法を確認してご案内します。"}
+          </p>
+
           <div className="hero-actions checkout-actions">
             <a href={emailHref} className="button-primary">{t.email}</a>
             <a href={whatsappHref} className="button-secondary" target="_blank" rel="noreferrer">{t.whatsapp}</a>
@@ -163,3 +169,4 @@ export function CheckoutContent() {
     </section>
   );
 }
+

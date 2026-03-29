@@ -1,5 +1,7 @@
 ﻿"use client";
 
+import Link from "next/link";
+
 import { useLanguage } from "@/components/LanguageProvider";
 
 export function Footer() {
@@ -10,15 +12,25 @@ export function Footer() {
       eyebrow: "Entrega internacional",
       title: "Produtos brasileiros selecionados para o cliente no Japao",
       text: "Loja pensada para venda direta ao consumidor, com foco em confianca, origem e produtos que viajam bem.",
-      launch: "Nesta fase",
-      items: ["Catalogo enxuto", "Conteudo bilingue", "Base pronta para checkout"]
+      launch: "Explorar",
+      items: [
+        { href: "/sets", label: "Kits" },
+        { href: "/shipping", label: "Frete" },
+        { href: "/faq", label: "FAQ" },
+        { href: "/policies", label: "Politicas" }
+      ]
     },
     ja: {
       eyebrow: "越境販売",
       title: "日本向けに届けるブラジル産セレクトストア",
       text: "一般消費者向けに、信頼しやすく買いやすい越境ストアとして設計しています。",
-      launch: "現状の構成",
-      items: ["厳選カタログ", "日本語/ポルトガル語対応", "チェックアウト連携準備済み"]
+      launch: "ページ案内",
+      items: [
+        { href: "/sets", label: "セット" },
+        { href: "/shipping", label: "配送" },
+        { href: "/faq", label: "FAQ" },
+        { href: "/policies", label: "ポリシー" }
+      ]
     }
   } as const;
 
@@ -34,9 +46,9 @@ export function Footer() {
         </div>
         <div>
           <p className="eyebrow">{t.launch}</p>
-          <ul className="footer-list">
+          <ul className="footer-list footer-links-list">
             {t.items.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item.href}><Link href={item.href}>{item.label}</Link></li>
             ))}
           </ul>
         </div>

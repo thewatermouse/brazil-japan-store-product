@@ -129,11 +129,13 @@ main { min-height: calc(100vh - 180px); }
 .field-input { width: 100%; border-radius: 18px; border: 1px solid var(--line); background: rgba(255, 250, 243, 0.9); padding: 0.95rem 1rem; color: var(--text); font: inherit; }
 .field-textarea { min-height: 140px; resize: vertical; }
 .checkout-product-card { padding: 1.2rem; border-radius: 22px; background: linear-gradient(180deg, rgba(251, 244, 232, 0.92), rgba(233, 220, 202, 0.92)); border: 1px solid var(--line); }
+.checkout-note { margin: 1rem 0 0; font-family: "Trebuchet MS", sans-serif; color: var(--muted); }
 .checkout-actions { flex-direction: column; align-items: stretch; }
 .prose-shell { max-width: 76rem; }
 .stack-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 2rem; }
 .site-footer { margin: 0 1rem 1rem; padding: 1.5rem 0; }
 .footer-grid { grid-template-columns: 1.2fr 0.8fr; align-items: start; }
+.footer-links-list li + li { margin-top: 0.45rem; }
 @media (max-width: 960px) {
   .hero-grid, .operation-grid, .product-layout, .contact-shell, .footer-grid, .card-grid, .stack-grid, .shelf-grid, .checkout-grid, .product-hero-shell, .benefit-grid, .journal-grid, .product-section-card.two-column { grid-template-columns: 1fr; }
   .section-heading { align-items: start; flex-direction: column; }

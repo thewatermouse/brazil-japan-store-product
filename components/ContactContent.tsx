@@ -1,33 +1,37 @@
 ﻿"use client";
 
+import Link from "next/link";
+
 import { useLanguage } from "@/components/LanguageProvider";
 
 const copy = {
   pt: {
-    eyebrow: "Atendimento",
-    title: "Quer comprar, revender ou tirar duvidas?",
+    eyebrow: "Atendimento e parcerias",
+    title: "Fale com a loja para compras, presentes corporativos ou revenda.",
     lead:
-      "A proxima etapa aqui e plugar checkout e atendimento real. Enquanto isso, esta pagina ja pode funcionar como ponto de contato comercial.",
-    cardTitle: "Canais previstos para MVP",
+      "Esta pagina ja funciona como canal comercial real. Se o cliente quiser pedido maior, presente, atacado leve ou tirar duvidas sobre envio ao Japao, esse e o ponto de contato.",
+    cardTitle: "Como atendemos hoje",
     items: [
-      "Checkout simples com Stripe",
-      "Pedido rapido por formulario",
-      "Atendimento por WhatsApp ou email",
-      "Handoff operacional para expedicao"
-    ]
+      "Pedido direto pelo checkout simples da loja",
+      "Atendimento por email para quantidades maiores",
+      "Suporte para presentes, kits e compras recorrentes",
+      "Resposta comercial em portugues e japones"
+    ],
+    cta: "Ir para pedido"
   },
   ja: {
-    eyebrow: "お問い合わせ",
-    title: "購入相談、卸相談、お問い合わせはこちら。",
+    eyebrow: "お問い合わせと法人対応",
+    title: "購入相談、ギフト用途、少量卸のご相談はこちら。",
     lead:
-      "次の段階ではチェックアウトと実際のカスタマー対応を接続します。それまでは、このページをお問い合わせ窓口として使えます。",
-    cardTitle: "MVPで想定している導線",
+      "このページは実際の商談窓口として使えます。まとめ買い、ギフト、法人利用、配送についての質問などに対応するための入口です。",
+    cardTitle: "現在の対応内容",
     items: [
-      "Stripeによる簡易チェックアウト",
-      "フォーム経由の注文受付",
-      "WhatsAppまたはメール対応",
-      "発送オペレーションへの引き継ぎ"
-    ]
+      "ストアの簡易チェックアウトから注文開始",
+      "まとまった数量はメールで相談可能",
+      "ギフトセットや継続購入の相談にも対応",
+      "日本語とポルトガル語で案内可能"
+    ],
+    cta: "注文ページへ"
   }
 } as const;
 
@@ -42,6 +46,7 @@ export function ContactContent() {
           <p className="eyebrow">{t.eyebrow}</p>
           <h1>{t.title}</h1>
           <p className="lead">{t.lead}</p>
+          <Link href="/checkout" className="button-primary">{t.cta}</Link>
         </div>
 
         <div className="contact-card">
