@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useLanguage } from "@/components/LanguageProvider";
 
@@ -19,7 +19,7 @@ export function LanguageSwitch() {
         className={language === "ja" ? "language-button active" : "language-button"}
         onClick={() => setLanguage("ja")}
       >
-        ???
+        日本語
       </button>
     </div>
   );

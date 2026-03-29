@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 
 import { useLanguage } from "@/components/LanguageProvider";
 import { getProductBySlug, products } from "@/data/products";
+import { storeContact } from "@/data/store";
 
 export function CheckoutContent() {
   const { language } = useLanguage();
@@ -78,8 +79,10 @@ export function CheckoutContent() {
     return lines.join("\n");
   }, [city, language, name, notes, product, quantity, t.city, t.customer, t.notes, t.product, t.quantity, t.total, total]);
 
-  const emailHref = `mailto:rodrigokato@gmail.com?subject=${encodeURIComponent(product.name[language])}&body=${encodeURIComponent(message)}`;
-  const whatsappHref = `https://wa.me/?text=${encodeURIComponent(message)}`;
+  const emailHref = `mailto:${storeContact.email}?subject=${encodeURIComponent(product.name[language])}&body=${encodeURIComponent(message)}`;
+  const whatsappHref = storeContact.whatsappNumber
+    ? `https://wa.me/${storeContact.whatsappNumber}?text=${encodeURIComponent(message)}`
+    : "";
 
   return (
     <section className="section">
@@ -161,7 +164,9 @@ export function CheckoutContent() {
 
           <div className="hero-actions checkout-actions">
             <a href={emailHref} className="button-primary">{t.email}</a>
-            <a href={whatsappHref} className="button-secondary" target="_blank" rel="noreferrer">{t.whatsapp}</a>
+            {storeContact.whatsappNumber ? (
+              <a href={whatsappHref} className="button-secondary" target="_blank" rel="noreferrer">{t.whatsapp}</a>
+            ) : null}
             <Link href="/products" className="text-link">{t.browse}</Link>
           </div>
         </aside>
