@@ -23,6 +23,7 @@ export function ProductsContent({ language: forcedLanguage }: { language?: Langu
   const { language: contextLanguage } = useLanguage();
   const language = forcedLanguage ?? contextLanguage;
   const t = copy[language];
+  const visibleProducts = products.filter((product) => !product.image.startsWith("/placeholders/"));
 
   return (
     <section className="section">
@@ -36,7 +37,7 @@ export function ProductsContent({ language: forcedLanguage }: { language?: Langu
         </div>
 
         <div className="card-grid">
-          {products.map((product) => (
+          {visibleProducts.map((product) => (
             <ProductCard key={product.slug} product={product} language={language} />
           ))}
         </div>

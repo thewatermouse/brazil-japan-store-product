@@ -12,6 +12,11 @@ type ProductCardProps = {
   language?: Language;
 };
 
+const compactVisualSlugs = new Set([
+  "propolis-ponlee-verde-alcoolico",
+  "propolis-ponlee-curcuma-polen"
+]);
+
 const productTones = {
   "green-propolis-drops": "tone-propolis",
   "cerrado-specialty-coffee": "tone-coffee",
@@ -22,11 +27,14 @@ export function ProductCard({ product, language: forcedLanguage }: ProductCardPr
   const { language: contextLanguage } = useLanguage();
   const language = forcedLanguage ?? contextLanguage;
   const toneClass = productTones[product.slug as keyof typeof productTones] ?? "";
+  const imageClassName = compactVisualSlugs.has(product.slug)
+    ? "product-visual-image product-visual-image-compact"
+    : "product-visual-image";
 
   return (
     <article className="product-card product-card-rich">
       <div className={`product-visual ${toneClass}`}>
-        <img src={assetPath(product.image)} alt={product.name[language]} className="product-visual-image" />
+        <img src={assetPath(product.image)} alt={product.name[language]} className={imageClassName} />
       </div>
       <div className="product-meta">
         <span className="pill">{product.badge[language]}</span>

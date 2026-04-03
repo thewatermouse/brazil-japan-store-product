@@ -127,7 +127,7 @@ const copy = {
 export function HomeContent({ language: forcedLanguage }: { language?: Language }) {
   const { language: contextLanguage } = useLanguage();
   const language = forcedLanguage ?? contextLanguage;
-  const featuredProducts = products.slice(0, 3);
+  const featuredProducts = products.filter((product) => !product.image.startsWith("/placeholders/")).slice(0, 3);
   const t = copy[language];
 
   return (
