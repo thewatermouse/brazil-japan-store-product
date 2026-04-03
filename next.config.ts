@@ -1,15 +1,15 @@
 import type { NextConfig } from "next";
 
 const repoName = "brazil-japan-store-product";
-const isProduction = process.env.NODE_ENV === "production";
+const isStaticExport = process.env.STATIC_EXPORT === "1";
 
 const nextConfig: NextConfig = {
-  assetPrefix: isProduction ? `/${repoName}/` : undefined,
-  basePath: isProduction ? `/${repoName}` : "",
+  assetPrefix: isStaticExport ? `/${repoName}/` : undefined,
+  basePath: isStaticExport ? `/${repoName}` : "",
   images: {
-    unoptimized: true
+    unoptimized: isStaticExport
   },
-  output: "export",
+  output: isStaticExport ? "export" : undefined,
   reactStrictMode: true,
   trailingSlash: true
 };

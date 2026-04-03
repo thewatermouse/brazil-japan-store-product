@@ -132,7 +132,11 @@ main { min-height: calc(100vh - 180px); }
 .field-textarea { min-height: 140px; resize: vertical; }
 .checkout-product-card { padding: 1.2rem; border-radius: 22px; background: linear-gradient(180deg, rgba(251, 244, 232, 0.92), rgba(233, 220, 202, 0.92)); border: 1px solid var(--line); }
 .checkout-note { margin: 1rem 0 0; font-family: "Trebuchet MS", sans-serif; color: var(--muted); }
+.checkout-note-success { color: var(--accent-strong); }
+.checkout-note-error { color: #8f2d2d; }
 .checkout-actions { flex-direction: column; align-items: stretch; }
+.paypal-card { margin-top: 1rem; }
+.paypal-shell { margin-top: 1rem; }
 .prose-shell { max-width: 76rem; }
 .stack-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 2rem; }
 .site-footer { margin: 0 1rem 1rem; padding: 1.5rem 0; }
