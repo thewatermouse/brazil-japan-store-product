@@ -93,7 +93,6 @@ main { min-height: calc(100vh - 180px); }
 .card-grid, .benefit-grid, .journal-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .product-card-rich { background: linear-gradient(180deg, rgba(251, 244, 232, 0.86), rgba(244, 233, 215, 0.92)); }
 .product-visual { min-height: 180px; display: flex; align-items: flex-end; padding: 1.2rem; border-radius: 20px; color: #fff7ef; font-size: 1.4rem; line-height: 1.05; margin-bottom: 1rem; background: linear-gradient(160deg, var(--accent), var(--accent-warm)); }
-.product-visual span { max-width: 9ch; }
 .tone-propolis { background: linear-gradient(160deg, #315e3d, #8ca54f); }
 .tone-coffee { background: linear-gradient(160deg, #513524, #b07a49); }
 .tone-acai { background: linear-gradient(160deg, #5d2340, #9c4a72); }
@@ -181,14 +180,6 @@ main { min-height: calc(100vh - 180px); }
 .product-visual {
   overflow: hidden;
   position: relative;
-}
-
-.product-visual span {
-  position: absolute;
-  left: 1.2rem;
-  bottom: 1rem;
-  z-index: 1;
-  text-shadow: 0 2px 14px rgba(0,0,0,0.35);
 }
 
 .product-stage-image {

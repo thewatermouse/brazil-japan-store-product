@@ -27,7 +27,6 @@ export function ProductCard({ product, language: forcedLanguage }: ProductCardPr
     <article className="product-card product-card-rich">
       <div className={`product-visual ${toneClass}`}>
         <img src={assetPath(product.image)} alt={product.name[language]} className="product-visual-image" />
-        <span>{product.name[language]}</span>
       </div>
       <div className="product-meta">
         <span className="pill">{product.badge[language]}</span>
