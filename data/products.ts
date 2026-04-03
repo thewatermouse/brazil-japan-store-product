@@ -132,7 +132,7 @@ export const products: Product[] = [
   {
     slug: "castanha-caju-alibec",
     category: "wellness",
-    image: "/products/castanha-para-alibec.png",
+    image: "/products/castanha-caju-alibec.jpg",
     name: { pt: "Castanha de Caju Torrada sem Sal - Alibec 250g", ja: "カシューナッツ ロースト無塩 アリベック 250g" },
     shortDescription: {
       pt: "Castanha de caju torrada sem sal, selecionada e embalada para manter o crocante.",
