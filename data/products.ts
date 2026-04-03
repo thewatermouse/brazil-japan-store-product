@@ -132,7 +132,7 @@ export const products: Product[] = [
   {
     slug: "castanha-caju-alibec",
     category: "wellness",
-    image: "/products/castanha-caju-alibec.jpg",
+    image: "/products/castanha-para-alibec.png",
     name: { pt: "Castanha de Caju Torrada sem Sal - Alibec 250g", ja: "カシューナッツ ロースト無塩 アリベック 250g" },
     shortDescription: {
       pt: "Castanha de caju torrada sem sal, selecionada e embalada para manter o crocante.",
@@ -350,7 +350,7 @@ export const products: Product[] = [
   {
     slug: "cafe-altinopolis-organico",
     category: "coffee",
-    image: "/products/cafe-altinopolis.jpg",
+    image: "/products/cafe-altinopolis.webp",
     name: { pt: "Cafe Organico Altinopolis Torrado Moido - 250g", ja: "アルチノポリス オーガニックコーヒー 中挽き 250g" },
     shortDescription: {
       pt: "Cafe organico certificado, torrado e moido, de Altinopolis SP. Sabor equilibrado e encorpado.",
@@ -423,7 +423,7 @@ export const products: Product[] = [
   {
     slug: "propolis-ponlee-curcuma-polen",
     category: "propolis",
-    image: "/products/propolis-ponlee-curcuma.jpg",
+    image: "/products/propolis-ponlee-curcuma.jpeg",
     name: { pt: "Propolis PonLee Curcuma e Polen - 30ml", ja: "プロポリス PonLee クルクマ＋花粉 ブレンド 30ml" },
     shortDescription: {
       pt: "Blend de extrato de propolis verde, polen e curcuma. Export Brazil, 30ml.",
@@ -459,7 +459,7 @@ export const products: Product[] = [
   {
     slug: "cafe-cia-organica-biodinamico",
     category: "coffee",
-    image: "/products/cafe-cia-organica.jpg",
+    image: "/products/cafe-cia-organica.webp",
     name: { pt: "Cafe Gourmet Organico Biodinamico Cia. Organica - 250g", ja: "Cia. Organica バイオダイナミックコーヒー 250g" },
     shortDescription: {
       pt: "Cafe 100% arabica, organico e biodinamico. Certificacao Demeter e IBD. Torrado e moido.",
@@ -496,7 +496,7 @@ export const products: Product[] = [
   {
     slug: "castanha-para-alibec",
     category: "wellness",
-    image: "/products/castanha-para-alibec.jpg",
+    image: "/products/castanha-para-alibec.png",
     name: { pt: "Castanha do Para Alibec - 250g", ja: "ブラジルナッツ アリベック 250g" },
     shortDescription: {
       pt: "Castanha do Para natural selecionada, produto nacional premium da Alibec.",
