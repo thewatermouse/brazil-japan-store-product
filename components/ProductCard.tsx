@@ -38,7 +38,7 @@ export function ProductCard({ product, language: forcedLanguage }: ProductCardPr
       <p>{product.shortDescription[language]}</p>
       <dl className="spec-list">
         <div>
-          <dt>{language === "pt" ? "Conteudo" : "内容量"}</dt>
+          <dt>{language === "pt" ? "Conteúdo" : "内容量"}</dt>
           <dd>{product.weight}</dd>
         </div>
         <div>

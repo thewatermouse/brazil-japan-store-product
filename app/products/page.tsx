@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "Produtos brasileiros",
   description:
-    "Catalogo com cafe especial, propolis verde e acai em po para consumidores no Japao.",
+    "Catálogo com café especial, própolis verde e açaí em pó para consumidores no Japão.",
   path: "/products",
   language: "pt"
 });

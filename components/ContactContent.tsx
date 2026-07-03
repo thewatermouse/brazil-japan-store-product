@@ -11,13 +11,13 @@ const copy = {
     eyebrow: "Atendimento e parcerias",
     title: "Fale com a loja para compras, presentes corporativos ou revenda.",
     lead:
-      "Esta pagina ja funciona como canal comercial real. Se o cliente quiser pedido maior, presente, atacado leve ou tirar duvidas sobre envio ao Japao, esse e o ponto de contato.",
+      "Esta página já funciona como canal comercial real. Se o cliente quiser pedido maior, presente, atacado leve ou tirar dúvidas sobre envio ao Japão, esse é o ponto de contato.",
     cardTitle: "Como atendemos hoje",
     items: [
       "Pedido direto pelo checkout simples da loja",
       "Atendimento por email para quantidades maiores",
       "Suporte para presentes, kits e compras recorrentes",
-      "Resposta comercial em portugues e japones"
+      "Resposta comercial em português e japonês"
     ],
     cta: "Ir para pedido"
   },

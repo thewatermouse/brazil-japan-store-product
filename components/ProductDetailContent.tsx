@@ -9,7 +9,7 @@ import { localizedPath } from "@/lib/site";
 
 const categoryTone = {
   propolis: { pt: "Extrato da mata brasileira", ja: "ブラジルの森から生まれた滴" },
-  coffee: { pt: "Colheita, torra e xicara", ja: "収穫から一杯まで" },
+  coffee: { pt: "Colheita, torra e xícara", ja: "収穫から一杯まで" },
   wellness: { pt: "Energia de fruta e floresta", ja: "果実と自然のエネルギー" }
 } as const;
 
@@ -25,10 +25,10 @@ export function ProductDetailContent({
 
   const copy = {
     pt: {
-      back: "Voltar ao catalogo",
+      back: "Voltar ao catálogo",
       buy: "Iniciar pedido",
-      price: "Preco",
-      weight: "Conteudo",
+      price: "Preço",
+      weight: "Conteúdo",
       shelfLife: "Validade",
       origin: "Origem",
       usage: "Como usar",

@@ -3,7 +3,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Contato",
-  description: "Canais de contato para pedidos, kits, atacado leve e duvidas sobre a loja.",
+  description: "Canais de contato para pedidos, kits, atacado leve e dúvidas sobre a loja.",
   path: "/contact",
   language: "pt"
 });

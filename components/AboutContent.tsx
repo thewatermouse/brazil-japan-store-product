@@ -6,21 +6,21 @@ import type { Language } from "@/data/products";
 const copy = {
   pt: {
     eyebrow: "Nossa curadoria",
-    title: "Uma loja para apresentar o melhor do Brasil ao cliente no Japao.",
+    title: "Uma loja para apresentar o melhor do Brasil ao cliente no Japão.",
     lead:
-      "A proposta e simples: vender bem para o consumidor final, com foco em produtos compactos, premium e faceis de enviar. Menos discurso operacional, mais confianca de compra.",
+      "A proposta é simples: vender bem para o consumidor final, com foco em produtos compactos, premium e fáceis de enviar. Menos discurso operacional, mais confiança de compra.",
     cards: [
       {
-        title: "Selecao enxuta",
-        text: "Comecamos com itens que viajam bem, tem boa margem e contam uma historia clara de origem brasileira."
+        title: "Seleção enxuta",
+        text: "Começamos com itens que viajam bem, têm boa margem e contam uma história clara de origem brasileira."
       },
       {
-        title: "Experiencia bilingue",
-        text: "Portugues para apresentacao comercial e japones para o cliente final entender, confiar e comprar."
+        title: "Experiência bilíngue",
+        text: "Português para apresentação comercial e japonês para o cliente final entender, confiar e comprar."
       },
       {
-        title: "Expansao por demanda",
-        text: "O catalogo cresce conforme surgem sinais reais de recompra, ticket medio e aceitacao do mercado."
+        title: "Expansão por demanda",
+        text: "O catálogo cresce conforme surgem sinais reais de recompra, ticket médio e aceitação do mercado."
       }
     ]
   },

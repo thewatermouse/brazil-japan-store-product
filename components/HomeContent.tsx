@@ -10,60 +10,60 @@ import { localizedPath } from "@/lib/site";
 const copy = {
   pt: {
     kicker: "Brasil vivo, em pequenos rituais",
-    title: "Sabores e extratos do Brasil com origem real, agora para o Japao.",
+    title: "Sabores e extratos do Brasil com origem real, agora para o Japão.",
     description:
-      "Cafe do Cerrado, propolis verde de Minas e acai da Amazonia. Uma loja pensada para quem quer comprar produtos brasileiros com historia, contato com a natureza e uso no dia a dia.",
+      "Café do Cerrado, própolis verde de Minas e açaí da Amazônia. Uma loja pensada para quem quer comprar produtos brasileiros com história, contato com a natureza e uso no dia a dia.",
     primaryCta: "Explorar produtos",
     secondaryCta: "Fazer um pedido",
     panelTitle: "O que define a loja",
     highlights: [
-      "Ingredientes ligados a territorio, clima e colheita",
-      "Produtos estaveis, leves e viaveis para envio internacional",
-      "Experiencia bilingue para aproximar marca e consumidor final"
+      "Ingredientes ligados a território, clima e colheita",
+      "Produtos estáveis, leves e viáveis para envio internacional",
+      "Experiência bilíngue para aproximar marca e consumidor final"
     ],
     shelfTitle: "Da floresta, da fazenda e do cotidiano brasileiro",
     shelfText:
-      "Nao e uma vitrine generica de importados. Cada item entra aqui porque tem origem clara, ritual simples de consumo e personalidade brasileira perceptivel no sabor, no aroma ou no uso.",
-    shelfItems: ["Minas Gerais", "Cerrado Mineiro", "Para"],
-    featureEyebrow: "Selecao inicial",
-    featureTitle: "Produtos para comecar bem a loja",
-    featureLink: "Ver catalogo completo",
+      "Não é uma vitrine genérica de importados. Cada item entra aqui porque tem origem clara, ritual simples de consumo e personalidade brasileira perceptível no sabor, no aroma ou no uso.",
+    shelfItems: ["Minas Gerais", "Cerrado Mineiro", "Pará"],
+    featureEyebrow: "Seleção inicial",
+    featureTitle: "Produtos para começar bem a loja",
+    featureLink: "Ver catálogo completo",
     ritualEyebrow: "Como essa marca se sente",
-    ritualTitle: "Natureza brasileira sem fantasia turistica.",
+    ritualTitle: "Natureza brasileira sem fantasia turística.",
     ritualItems: [
       {
-        title: "Materia-prima com lugar",
-        text: "A origem nao entra como enfeite. Ela e parte do produto, da decisao de compra e da confianca de quem recebe."
+        title: "Matéria-prima com lugar",
+        text: "A origem não entra como enfeite. Ela é parte do produto, da decisão de compra e da confiança de quem recebe."
       },
       {
         title: "Uso simples no dia a dia",
-        text: "Produtos pequenos, uteis e repetiveis. Nada depende de ocasiao especial para fazer sentido."
+        text: "Produtos pequenos, úteis e repetíveis. Nada depende de ocasião especial para fazer sentido."
       },
       {
-        title: "Calor humano, nao discurso institucional",
-        text: "A linguagem da marca precisa parecer proxima, honesta e segura, nao apresentacao de trading company."
+        title: "Calor humano, não discurso institucional",
+        text: "A linguagem da marca precisa parecer próxima, honesta e segura, não apresentação de trading company."
       }
     ],
     journalEyebrow: "Cenas da marca",
     journalTitle: "O que queremos que o cliente veja quando entra aqui.",
     journalCards: [
       {
-        title: "Um cafe que lembra terra quente e torra fresca",
-        text: "A experiencia precisa comecar pelo desejo, nao pela planilha."
+        title: "Um café que lembra terra quente e torra fresca",
+        text: "A experiência precisa começar pelo desejo, não pela planilha."
       },
       {
-        title: "Um propolis que parece remedio da mata, so que belo",
-        text: "Bem-estar com origem e uso cotidiano, sem cara de produto generico."
+        title: "Um própolis que parece remédio da mata, só que belo",
+        text: "Bem-estar com origem e uso cotidiano, sem cara de produto genérico."
       },
       {
-        title: "Um acai que nao depende de freezer para ter alma",
-        text: "Brasil natural, adaptado a uma rotina urbana no Japao."
+        title: "Um açaí que não depende de freezer para ter alma",
+        text: "Brasil natural, adaptado a uma rotina urbana no Japão."
       }
     ],
     promiseEyebrow: "Compromisso da loja",
-    promiseTitle: "Comprar com clareza: o que e, de onde vem e como usar.",
+    promiseTitle: "Comprar com clareza: o que é, de onde vem e como usar.",
     promiseText:
-      "A proposta comercial e direta: poucos produtos, boa explicacao, identidade forte e espaco para crescer com o que realmente vender."
+      "A proposta comercial é direta: poucos produtos, boa explicação, identidade forte e espaço para crescer com o que realmente vender."
   },
   ja: {
     kicker: "ブラジルの自然を、毎日の小さな習慣へ",

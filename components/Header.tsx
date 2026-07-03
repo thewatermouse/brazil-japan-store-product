@@ -9,7 +9,7 @@ import { localizedPath } from "@/lib/site";
 
 const navItems = {
   pt: [
-    { href: "/", label: "Inicio" },
+    { href: "/", label: "Início" },
     { href: "/products", label: "Produtos" },
     { href: "/about", label: "Marca" },
     { href: "/checkout", label: "Pedido" },
@@ -33,7 +33,7 @@ export function Header() {
       <div className="container nav-shell">
         <Link href={localizedPath("/", language)} className="brand-mark">
           <span className="brand-kicker">
-            {language === "pt" ? "Brasil para o Japao" : "Brazil to Japan"}
+            {language === "pt" ? "Brasil para o Japão" : "Brazil to Japan"}
           </span>
           <strong>{language === "pt" ? "Loja Brasil Select" : "Nippon Brasil Select"}</strong>
         </Link>

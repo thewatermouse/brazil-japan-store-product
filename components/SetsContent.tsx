@@ -11,23 +11,23 @@ const copy = {
   pt: {
     eyebrow: "Kits sugeridos",
     title: "Combinações prontas para presente, rotina e descoberta.",
-    lead: "Uma loja pequena vende melhor quando ajuda o cliente a montar uma compra com contexto. Estes kits entram para aumentar ticket medio e facilitar decisao.",
+    lead: "Uma loja pequena vende melhor quando ajuda o cliente a montar uma compra com contexto. Estes kits entram para aumentar ticket médio e facilitar decisão.",
     cta: "Pedir este kit",
     sets: [
       {
         name: "Rotina Brasileira",
-        items: ["Propolis Verde Brasileiro", "Cafe Especial do Cerrado"],
+        items: ["Extrato de Própolis Verde PonLee Alcoólico - 30ml", "Café Orgânico Altinópolis Torrado Moído - 250g"],
         price: "JPY 5.480"
       },
       {
         name: "Descoberta da Natureza",
-        items: ["Propolis Verde Brasileiro", "Acai em Po Energia"],
-        price: "JPY 5.880"
+        items: ["Própolis PonLee Cúrcuma e Pólen - 30ml", "Mel Orgânico MN Propolis - Bisnaga 200g"],
+        price: "JPY 5.980"
       },
       {
         name: "Primeiro Pedido",
-        items: ["Cafe Especial do Cerrado", "Acai em Po Energia"],
-        price: "JPY 3.680"
+        items: ["Café Orgânico Altinópolis Torrado Moído - 250g", "Chocolate OnVeg 70% Açúcar de Coco - 80g"],
+        price: "JPY 3.380"
       }
     ]
   },
@@ -39,18 +39,18 @@ const copy = {
     sets: [
       {
         name: "ブラジル習慣セット",
-        items: ["ブラジル産グリーンプロポリス", "セラード産スペシャルティコーヒー"],
+        items: ["グリーンプロポリスエキス PonLee アルコール液 30ml", "アルチノポリス オーガニックコーヒー 中挽き 250g"],
         price: "JPY 5,480"
       },
       {
         name: "自然の発見セット",
-        items: ["ブラジル産グリーンプロポリス", "アサイーパウダー"],
-        price: "JPY 5,880"
+        items: ["プロポリス PonLee クルクマ＋花粉 ブレンド 30ml", "オーガニックハニー MN Propolis スクイズボトル 200g"],
+        price: "JPY 5,980"
       },
       {
         name: "はじめての注文セット",
-        items: ["セラード産スペシャルティコーヒー", "アサイーパウダー"],
-        price: "JPY 3,680"
+        items: ["アルチノポリス オーガニックコーヒー 中挽き 250g", "OnVeg ダークチョコレート70% ココナッツシュガー 80g"],
+        price: "JPY 3,380"
       }
     ]
   }

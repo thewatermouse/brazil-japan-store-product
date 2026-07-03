@@ -3,7 +3,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "FAQ",
-  description: "Perguntas frequentes sobre pedidos, envio, presentes e operacao da loja.",
+  description: "Perguntas frequentes sobre pedidos, envio, presentes e operação da loja.",
   path: "/faq",
   language: "pt"
 });

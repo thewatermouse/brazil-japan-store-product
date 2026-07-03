@@ -6,10 +6,10 @@ import { products, type Language } from "@/data/products";
 
 const copy = {
   pt: {
-    eyebrow: "Catalogo",
-    title: "Selecao para o consumidor final no Japao",
+    eyebrow: "Catálogo",
+    title: "Seleção para o consumidor final no Japão",
     description:
-      "Produtos brasileiros premium, faceis de enviar, com foco em conveniencia, presente e recompra."
+      "Produtos brasileiros premium, fáceis de enviar, com foco em conveniência, presente e recompra."
   },
   ja: {
     eyebrow: "商品一覧",

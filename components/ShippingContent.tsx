@@ -7,18 +7,18 @@ import { shippingEstimateTiers } from "@/data/store";
 const copy = {
   pt: {
     eyebrow: "Frete e entrega",
-    title: "Como funciona o envio para o Japao.",
+    title: "Como funciona o envio para o Japão.",
     lead: "Para MVP, a loja trabalha com uma tabela simples por faixa de peso. Isso deixa o cliente mais orientado e evita surpresa no pedido inicial.",
     cards: [
-      { title: "Pedidos pequenos", text: "O foco inicial e em produtos leves, estaveis e adequados para envio internacional ao consumidor final." },
-      { title: "Prazo estimado", text: "O prazo varia conforme estoque e metodo de envio, mas a loja sempre comunica isso antes da confirmacao final." },
-      { title: "Pedido maior", text: "Compras em quantidade, kits e presentes podem ser tratadas pelo canal comercial para definir a melhor expedicao." }
+      { title: "Pedidos pequenos", text: "O foco inicial é em produtos leves, estáveis e adequados para envio internacional ao consumidor final." },
+      { title: "Prazo estimado", text: "O prazo varia conforme estoque e método de envio, mas a loja sempre comunica isso antes da confirmação final." },
+      { title: "Pedido maior", text: "Compras em quantidade, kits e presentes podem ser tratadas pelo canal comercial para definir a melhor expedição." }
     ],
     tableTitle: "Tabela inicial de frete estimado",
     weight: "Peso total do pedido",
     price: "Frete estimado",
-    upTo: "ate",
-    note: "Esses valores sao uma referencia operacional inicial. A confirmacao final depende da modalidade de envio e da cotacao logistica do momento."
+    upTo: "até",
+    note: "Esses valores são uma referência operacional inicial. A confirmação final depende da modalidade de envio e da cotação logística do momento."
   },
   ja: {
     eyebrow: "配送について",

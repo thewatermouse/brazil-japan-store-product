@@ -2,8 +2,8 @@ import { PoliciesContent } from "@/components/PoliciesContent";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Politicas",
-  description: "Regras da loja para confirmacao de pedido, atendimento e dados do cliente.",
+  title: "Políticas",
+  description: "Regras da loja para confirmação de pedido, envio, devolução e dados do cliente.",
   path: "/policies",
   language: "pt"
 });

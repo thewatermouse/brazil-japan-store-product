@@ -132,7 +132,7 @@ export function PayPalCheckout({ cart, customer, language }: PayPalCheckoutProps
           error instanceof Error
             ? error.message
             : language === "pt"
-              ? "Nao foi possivel carregar o PayPal."
+              ? "Não foi possível carregar o PayPal."
               : "PayPal o yomikome masen deshita."
         );
       }

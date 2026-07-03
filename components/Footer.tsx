@@ -11,14 +11,14 @@ export function Footer() {
   const copy = {
     pt: {
       eyebrow: "Entrega internacional",
-      title: "Produtos brasileiros selecionados para o cliente no Japao",
-      text: "Loja pensada para venda direta ao consumidor, com foco em confianca, origem e produtos que viajam bem.",
+      title: "Produtos brasileiros selecionados para o cliente no Japão",
+      text: "Loja pensada para venda direta ao consumidor, com foco em confiança, origem e produtos que viajam bem.",
       launch: "Explorar",
       items: [
         { href: "/sets", label: "Kits" },
         { href: "/shipping", label: "Frete" },
         { href: "/faq", label: "FAQ" },
-        { href: "/policies", label: "Politicas" }
+        { href: "/policies", label: "Políticas" }
       ]
     },
     ja: {

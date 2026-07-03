@@ -3,7 +3,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Kits",
-  description: "Sugestoes de kits e combinacoes de produtos brasileiros para presente ou recompra.",
+  description: "Sugestões de kits e combinações de produtos brasileiros para presente ou recompra.",
   path: "/sets",
   language: "pt"
 });

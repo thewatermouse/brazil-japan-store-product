@@ -5,9 +5,9 @@ import { buildMetadata } from "@/lib/metadata";
 import { localizedSiteUrl, siteUrl } from "@/lib/site";
 
 export const metadata = buildMetadata({
-  title: "Produtos brasileiros para clientes no Japao",
+  title: "Produtos brasileiros para clientes no Japão",
   description:
-    "Loja em portugues com cafe brasileiro, propolis verde e acai em po para consumidores no Japao.",
+    "Loja em português com café brasileiro, própolis verde e açaí em pó para consumidores no Japão.",
   path: "/",
   language: "pt"
 });
@@ -40,7 +40,7 @@ export default function HomePage() {
           {
             "@context": "https://schema.org",
             "@type": "OfferCatalog",
-            name: "Produtos brasileiros para o Japao",
+            name: "Produtos brasileiros para o Japão",
             itemListElement: products.map((product) => ({
               "@type": "Offer",
               priceCurrency: "JPY",
