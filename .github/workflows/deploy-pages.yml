@@ -35,7 +35,11 @@ jobs:
         run: npm ci
 
       - name: Build static export
-        run: npm run build
+        run: |
+          rm -rf app/api
+          npm run build
+        env:
+          STATIC_EXPORT: "1"
 
       - name: Preserve _next assets on Pages
         run: touch out/.nojekyll
