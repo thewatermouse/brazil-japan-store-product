@@ -1,9 +1,0 @@
-﻿<svg width="720" height="520" viewBox="0 0 720 520" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="720" height="520" rx="40" fill="#315E3D"/>
-  <circle cx="540" cy="120" r="72" fill="#8CA54F" fill-opacity="0.6"/>
-  <rect x="260" y="90" width="200" height="70" rx="18" fill="#1E1A16"/>
-  <rect x="240" y="150" width="240" height="220" rx="40" fill="#8B5A2B"/>
-  <rect x="260" y="190" width="200" height="140" rx="28" fill="#F3E5C7"/>
-  <path d="M350 230H370V290C370 308 355 322 337 322H320V250C320 239 329 230 340 230H350Z" fill="#315E3D"/>
-  <text x="360" y="430" text-anchor="middle" fill="#F7EFE3" font-size="34" font-family="Georgia">Green Propolis</text>
-</svg>
