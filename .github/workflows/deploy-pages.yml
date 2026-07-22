@@ -40,6 +40,9 @@ jobs:
           npm run build
         env:
           STATIC_EXPORT: "1"
+          # Set repo variable NEXT_PUBLIC_GA_MEASUREMENT_ID (Settings →
+          # Secrets and variables → Actions → Variables) to enable GA4.
+          NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ vars.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
 
       - name: Preserve _next assets on Pages
         run: touch out/.nojekyll
