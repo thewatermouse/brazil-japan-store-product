@@ -1,6 +1,7 @@
 ﻿import type { Metadata, Viewport } from "next";
 
 import { Footer } from "@/components/Footer";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Header } from "@/components/Header";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import { siteOrigin, siteUrl } from "@/lib/site";
@@ -75,6 +76,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body>
+        <GoogleAnalytics />
         <LanguageProvider>
           <Header />
           <main>{children}</main>

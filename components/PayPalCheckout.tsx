@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { trackPurchase, type PurchaseItem } from "@/lib/analytics";
 import type { CartLine, CheckoutCustomer } from "@/lib/cart";
 
 declare global {
@@ -23,11 +24,21 @@ type PayPalCheckoutProps = {
   cart: CartLine[];
   customer: CheckoutCustomer;
   language: "pt" | "ja";
+  amountTotal: number;
+  shippingTotal: number;
+  items: PurchaseItem[];
 };
 
 const clientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID ?? "";
 
-export function PayPalCheckout({ cart, customer, language }: PayPalCheckoutProps) {
+export function PayPalCheckout({
+  cart,
+  customer,
+  language,
+  amountTotal,
+  shippingTotal,
+  items
+}: PayPalCheckoutProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const buttonsRef = useRef<{ render: (element: HTMLElement) => Promise<void>; close: () => void } | null>(null);
   const [message, setMessage] = useState("");
@@ -118,6 +129,13 @@ export function PayPalCheckout({ cart, customer, language }: PayPalCheckoutProps
                 ? "Pagamento PayPal capturado com sucesso."
                 : "PayPal no kessai ga seijo ni kakutei shimashita."
             );
+            trackPurchase({
+              transactionId: orderID,
+              value: amountTotal,
+              shipping: shippingTotal,
+              currency: "JPY",
+              items
+            });
           },
           onError: (error) => {
             setStatus("error");
@@ -145,7 +163,7 @@ export function PayPalCheckout({ cart, customer, language }: PayPalCheckoutProps
       buttonsRef.current?.close();
       buttonsRef.current = null;
     };
-  }, [cart, customer, language]);
+  }, [cart, customer, language, amountTotal, shippingTotal, items]);
 
   if (!clientId) {
     return (

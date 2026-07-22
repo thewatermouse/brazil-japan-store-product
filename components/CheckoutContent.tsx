@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 
 import { PayPalCheckout } from "@/components/PayPalCheckout";
 import { useLanguage } from "@/components/LanguageProvider";
+import { trackEvent, type PurchaseItem } from "@/lib/analytics";
 import { getProductBySlug, products, type Language } from "@/data/products";
 import { shippingEstimateTiers, storeContact } from "@/data/store";
 import { assetPath } from "@/lib/asset-path";
@@ -157,6 +158,13 @@ export function CheckoutContent({ language: forcedLanguage }: { language?: Langu
   const shippingEstimate =
     shippingEstimateTiers.find((tier) => totalWeightGrams <= tier.maxWeightGrams)?.estimatedYen ?? null;
   const total = subtotal + (shippingEstimate ?? 0);
+
+  const purchaseItems: PurchaseItem[] = validLines.map((line) => ({
+    item_id: line.slug,
+    item_name: line.product.name[language],
+    quantity: line.quantity,
+    price: line.product.priceYen
+  }));
 
   const message = useMemo(() => {
     const orderLines = validLines.map(
@@ -391,11 +399,29 @@ export function CheckoutContent({ language: forcedLanguage }: { language?: Langu
             <span className="pill">{t.paypal}</span>
             <h2>{t.paypal}</h2>
             <p className="checkout-note">{t.paypalLead}</p>
-            <PayPalCheckout cart={cart} customer={customer} language={language} />
+            <PayPalCheckout
+              cart={cart}
+              customer={customer}
+              language={language}
+              amountTotal={total}
+              shippingTotal={shippingEstimate ?? 0}
+              items={purchaseItems}
+            />
           </div>
 
           <div className="hero-actions checkout-actions">
-            <a href={emailHref} className="button-primary">
+            <a
+              href={emailHref}
+              className="button-primary"
+              onClick={() =>
+                trackEvent("generate_lead", {
+                  method: "email",
+                  value: total,
+                  currency: "JPY",
+                  items: purchaseItems
+                })
+              }
+            >
               {t.email}
             </a>
             {storeContact.whatsappNumber ? (
