@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { PayPalCheckout } from "@/components/PayPalCheckout";
 import { useLanguage } from "@/components/LanguageProvider";
 import { trackEvent, type PurchaseItem } from "@/lib/analytics";
-import { getProductBySlug, products, type Language } from "@/data/products";
+import { getProductBySlug, products, visibleProducts, type Language } from "@/data/products";
 import { shippingEstimateTiers, storeContact } from "@/data/store";
 import { assetPath } from "@/lib/asset-path";
 import type { CartLine, CheckoutCustomer } from "@/lib/cart";
@@ -16,7 +16,6 @@ import { localizedPath } from "@/lib/site";
 export function CheckoutContent({ language: forcedLanguage }: { language?: Language }) {
   const { language: contextLanguage } = useLanguage();
   const language = forcedLanguage ?? contextLanguage;
-  const visibleProducts = products.filter((product) => !product.image.startsWith("/placeholders/"));
   const defaultSlug = visibleProducts[0]?.slug ?? products[0].slug;
 
   const [cart, setCart] = useState<CartLine[]>([{ slug: defaultSlug, quantity: 1 }]);

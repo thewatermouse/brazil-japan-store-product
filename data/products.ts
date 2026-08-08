@@ -530,6 +530,16 @@ export const products: Product[] = [
   }
 ];
 
+export function isVisibleProduct(product: Product) {
+  return !product.image.startsWith("/placeholders/");
+}
+
+// Products shown to the public: catalog, checkout, sitemap, structured data
+// and the statically generated product pages. Placeholder entries (still in
+// `products` for future use) are excluded everywhere so they never leak into
+// navigation or search results.
+export const visibleProducts = products.filter(isVisibleProduct);
+
 export function getProductBySlug(slug: string) {
   return products.find((product) => product.slug === slug);
 }

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { products } from "@/data/products";
+import { visibleProducts } from "@/data/products";
 import { localizedSiteUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
@@ -25,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   ]);
 
-  const productEntries: MetadataRoute.Sitemap = products.flatMap((product) => [
+  const productEntries: MetadataRoute.Sitemap = visibleProducts.flatMap((product) => [
     {
       url: localizedSiteUrl(`/products/${product.slug}`, "pt"),
       changeFrequency: "weekly",

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 
 import { ProductDetailContent } from "@/components/ProductDetailContent";
 import { StructuredData } from "@/components/StructuredData";
-import { getProductBySlug, products } from "@/data/products";
+import { getProductBySlug, visibleProducts } from "@/data/products";
 import { buildMetadata } from "@/lib/metadata";
 import { siteUrl } from "@/lib/site";
 
@@ -12,7 +12,7 @@ type ProductPageProps = {
 };
 
 export function generateStaticParams() {
-  return products.map((product) => ({
+  return visibleProducts.map((product) => ({
     slug: product.slug
   }));
 }

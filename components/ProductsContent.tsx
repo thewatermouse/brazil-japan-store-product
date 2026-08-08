@@ -2,7 +2,7 @@
 
 import { ProductCard } from "@/components/ProductCard";
 import { useLanguage } from "@/components/LanguageProvider";
-import { products, type Language } from "@/data/products";
+import { visibleProducts, type Language } from "@/data/products";
 
 const copy = {
   pt: {
@@ -23,7 +23,6 @@ export function ProductsContent({ language: forcedLanguage }: { language?: Langu
   const { language: contextLanguage } = useLanguage();
   const language = forcedLanguage ?? contextLanguage;
   const t = copy[language];
-  const visibleProducts = products.filter((product) => !product.image.startsWith("/placeholders/"));
 
   return (
     <section className="section">

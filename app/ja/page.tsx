@@ -1,6 +1,6 @@
 import { HomeContent } from "@/components/HomeContent";
 import { StructuredData } from "@/components/StructuredData";
-import { products } from "@/data/products";
+import { visibleProducts } from "@/data/products";
 import { buildMetadata } from "@/lib/metadata";
 import { localizedSiteUrl, siteUrl } from "@/lib/site";
 
@@ -41,7 +41,7 @@ export default function JapaneseHomePage() {
             "@context": "https://schema.org",
             "@type": "OfferCatalog",
             name: "ブラジル産食品カタログ",
-            itemListElement: products.map((product) => ({
+            itemListElement: visibleProducts.map((product) => ({
               "@type": "Offer",
               priceCurrency: "JPY",
               price: product.priceYen,

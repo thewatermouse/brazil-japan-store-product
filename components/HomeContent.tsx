@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { ProductCard } from "@/components/ProductCard";
 import { useLanguage } from "@/components/LanguageProvider";
-import { products, type Language } from "@/data/products";
+import { visibleProducts, type Language } from "@/data/products";
 import { localizedPath } from "@/lib/site";
 
 const copy = {
@@ -127,7 +127,7 @@ const copy = {
 export function HomeContent({ language: forcedLanguage }: { language?: Language }) {
   const { language: contextLanguage } = useLanguage();
   const language = forcedLanguage ?? contextLanguage;
-  const featuredProducts = products.filter((product) => !product.image.startsWith("/placeholders/")).slice(0, 3);
+  const featuredProducts = visibleProducts.slice(0, 3);
   const t = copy[language];
 
   return (
