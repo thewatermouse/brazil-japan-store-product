@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 
 import { ProductDetailContent } from "@/components/ProductDetailContent";
 import { StructuredData } from "@/components/StructuredData";
-import { getProductBySlug, visibleProducts } from "@/data/products";
+import { getProductBySlug, isVisibleProduct, visibleProducts } from "@/data/products";
 import { buildMetadata } from "@/lib/metadata";
 import { siteUrl } from "@/lib/site";
 
@@ -37,7 +37,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;
   const product = getProductBySlug(slug);
 
-  if (!product) {
+  if (!product || !isVisibleProduct(product)) {
     notFound();
   }
 
