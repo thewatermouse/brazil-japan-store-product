@@ -287,3 +287,53 @@ main { min-height: calc(100vh - 180px); }
 .shipping-table-head {
   font-weight: 700;
 }
+
+/* Kit / bundle cards */
+.kit-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.kit-includes-label {
+  margin-top: 1rem;
+}
+
+.kit-price-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.kit-price-now {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-strong);
+}
+
+.kit-price-was {
+  color: var(--muted);
+  text-decoration: line-through;
+  font-size: 0.95rem;
+}
+
+.kit-save-pill {
+  margin-top: 0.6rem;
+  background: rgba(198, 115, 55, 0.14);
+  color: var(--earth);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.kit-cta {
+  margin-top: 1.1rem;
+  align-self: flex-start;
+}
+
+.detail-discount dt,
+.detail-discount dd {
+  color: var(--earth);
+  font-weight: 700;
+}

@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { PayPalCheckout } from "@/components/PayPalCheckout";
 import { useLanguage } from "@/components/LanguageProvider";
 import { trackEvent, type PurchaseItem } from "@/lib/analytics";
+import { getCartKitDiscount } from "@/data/kits";
 import { getProductBySlug, products, visibleProducts, type Language } from "@/data/products";
 import { shippingEstimateTiers, storeContact } from "@/data/store";
 import { assetPath } from "@/lib/asset-path";
@@ -26,6 +27,7 @@ export function CheckoutContent({ language: forcedLanguage }: { language?: Langu
     const savedCustomer = window.localStorage.getItem("checkout-customer");
     const params = new URLSearchParams(window.location.search);
     const nextSlug = params.get("product");
+    const kitParam = params.get("kit");
 
     if (savedCart) {
       try {
@@ -43,7 +45,20 @@ export function CheckoutContent({ language: forcedLanguage }: { language?: Langu
       } catch {}
     }
 
-    if (nextSlug && getProductBySlug(nextSlug)) {
+    if (kitParam) {
+      const kitLines = kitParam
+        .split(",")
+        .map((slug) => slug.trim())
+        .filter((slug) => {
+          const product = getProductBySlug(slug);
+          return Boolean(product) && !product!.image.startsWith("/placeholders/");
+        })
+        .map((slug) => ({ slug, quantity: 1 }));
+
+      if (kitLines.length) {
+        setCart(kitLines);
+      }
+    } else if (nextSlug && getProductBySlug(nextSlug)) {
       setCart([{ slug: nextSlug, quantity: 1 }]);
     }
   }, []);
@@ -98,6 +113,7 @@ export function CheckoutContent({ language: forcedLanguage }: { language?: Langu
       city: "Cidade no Japão",
       notes: "Observações",
       subtotal: "Subtotal",
+      discount: "Desconto do kit",
       shippingEstimate: "Frete estimado",
       total: "Total estimado",
       email: "Enviar por email",
@@ -132,6 +148,7 @@ export function CheckoutContent({ language: forcedLanguage }: { language?: Langu
       city: "お届け先の都市",
       notes: "ご要望",
       subtotal: "商品小計",
+      discount: "セット割引",
       shippingEstimate: "送料目安",
       total: "概算合計",
       email: "メールで送る",
@@ -156,7 +173,9 @@ export function CheckoutContent({ language: forcedLanguage }: { language?: Langu
   const totalWeightGrams = validLines.reduce((sum, line) => sum + line.lineWeight, 0);
   const shippingEstimate =
     shippingEstimateTiers.find((tier) => totalWeightGrams <= tier.maxWeightGrams)?.estimatedYen ?? null;
-  const total = subtotal + (shippingEstimate ?? 0);
+  const { discountYen } = getCartKitDiscount(cart);
+  const discount = Math.min(Math.max(0, discountYen), subtotal);
+  const total = subtotal - discount + (shippingEstimate ?? 0);
 
   const purchaseItems: PurchaseItem[] = validLines.map((line) => ({
     item_id: line.slug,
@@ -177,6 +196,7 @@ export function CheckoutContent({ language: forcedLanguage }: { language?: Langu
       ...orderLines,
       "",
       `${t.subtotal}: JPY ${subtotal.toLocaleString()}`,
+      ...(discount > 0 ? [`${t.discount}: -JPY ${discount.toLocaleString()}`] : []),
       `${t.shippingEstimate}: ${shippingEstimate ? `JPY ${shippingEstimate.toLocaleString()}` : "-"}`,
       `${t.total}: JPY ${total.toLocaleString()}`,
       `${t.customer}: ${customer.name || "-"}`,
@@ -188,7 +208,7 @@ export function CheckoutContent({ language: forcedLanguage }: { language?: Langu
       `${t.city}: ${customer.city || "-"}`,
       `${t.notes}: ${customer.notes || "-"}`
     ].join("\n");
-  }, [customer, language, shippingEstimate, subtotal, t.address1, t.address2, t.city, t.customer, t.customerEmail, t.customerPhone, t.notes, t.postalCode, t.shippingEstimate, t.subtotal, t.total, total, validLines]);
+  }, [customer, discount, language, shippingEstimate, subtotal, t.address1, t.address2, t.city, t.customer, t.customerEmail, t.customerPhone, t.discount, t.notes, t.postalCode, t.shippingEstimate, t.subtotal, t.total, total, validLines]);
 
   const emailHref = `mailto:${storeContact.email}?subject=${encodeURIComponent(language === "pt" ? "Novo pedido da loja" : "新しい注文希望")}&body=${encodeURIComponent(message)}`;
   const whatsappHref = storeContact.whatsappNumber
@@ -381,6 +401,12 @@ export function CheckoutContent({ language: forcedLanguage }: { language?: Langu
                 <dt>{t.subtotal}</dt>
                 <dd>JPY {subtotal.toLocaleString()}</dd>
               </div>
+              {discount > 0 ? (
+                <div className="detail-discount">
+                  <dt>{t.discount}</dt>
+                  <dd>-JPY {discount.toLocaleString()}</dd>
+                </div>
+              ) : null}
               <div>
                 <dt>{t.shippingEstimate}</dt>
                 <dd>{shippingEstimate ? `JPY ${shippingEstimate.toLocaleString()}` : "-"}</dd>

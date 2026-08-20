@@ -1,3 +1,4 @@
+import { getCartKitDiscount } from "@/data/kits";
 import { getProductBySlug } from "@/data/products";
 import { shippingEstimateTiers } from "@/data/store";
 import type { CartLine, CheckoutCustomer } from "@/lib/cart";
@@ -20,6 +21,7 @@ export type NormalizedCheckout = {
   amountTotal: number;
   itemTotal: number;
   shippingTotal: number;
+  discountTotal: number;
   lines: Array<{
     name: string;
     quantity: number;
@@ -88,10 +90,16 @@ export function normalizeCheckoutPayload(payload: {
   const shippingTotal =
     shippingEstimateTiers.find((tier) => totalWeight <= tier.maxWeightGrams)?.estimatedYen ?? 0;
 
+  // Bundle discount is recomputed here from the cart contents (not trusted from
+  // the client), capped so it can never exceed the item total.
+  const { discountYen } = getCartKitDiscount(cart);
+  const discountTotal = Math.min(Math.max(0, discountYen), itemTotal);
+
   return {
-    amountTotal: itemTotal + shippingTotal,
+    amountTotal: itemTotal + shippingTotal - discountTotal,
     itemTotal,
     shippingTotal,
+    discountTotal,
     lines: validLines.map((line) => ({
       name: line.product.name.pt,
       quantity: line.quantity,
@@ -152,7 +160,15 @@ export async function createPayPalOrder(checkout: NormalizedCheckout) {
               shipping: {
                 currency_code: "JPY",
                 value: String(checkout.shippingTotal)
-              }
+              },
+              ...(checkout.discountTotal > 0
+                ? {
+                    discount: {
+                      currency_code: "JPY",
+                      value: String(checkout.discountTotal)
+                    }
+                  }
+                : {})
             }
           },
           items: checkout.lines.map((line) => ({

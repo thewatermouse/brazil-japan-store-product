@@ -1,60 +1,36 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 
 import { useLanguage } from "@/components/LanguageProvider";
 import type { Language } from "@/data/products";
+import { getKitPricing, kits } from "@/data/kits";
 import { localizedPath } from "@/lib/site";
-import { products } from "@/data/products";
 
 const copy = {
   pt: {
     eyebrow: "Kits sugeridos",
     title: "Combinações prontas para presente, rotina e descoberta.",
-    lead: "Uma loja pequena vende melhor quando ajuda o cliente a montar uma compra com contexto. Estes kits entram para aumentar ticket médio e facilitar decisão.",
+    lead: "Uma loja pequena vende melhor quando ajuda o cliente a montar uma compra com contexto. Estes kits aumentam o ticket médio, facilitam a decisão e saem com desconto sobre a compra avulsa.",
     cta: "Pedir este kit",
-    sets: [
-      {
-        name: "Rotina Brasileira",
-        items: ["Extrato de Própolis Verde PonLee Alcoólico - 30ml", "Café Orgânico Altinópolis Torrado Moído - 250g"],
-        price: "JPY 5.480"
-      },
-      {
-        name: "Descoberta da Natureza",
-        items: ["Própolis PonLee Cúrcuma e Pólen - 30ml", "Mel Orgânico MN Propolis - Bisnaga 200g"],
-        price: "JPY 5.980"
-      },
-      {
-        name: "Primeiro Pedido",
-        items: ["Café Orgânico Altinópolis Torrado Moído - 250g", "Chocolate OnVeg 70% Açúcar de Coco - 80g"],
-        price: "JPY 3.380"
-      }
-    ]
+    was: "de",
+    save: "Economize",
+    includes: "Inclui"
   },
   ja: {
     eyebrow: "おすすめセット",
     title: "ギフト用、日常用、はじめて用の組み合わせ。",
-    lead: "小さなストアでは、選びやすいセット提案が購入率と客単価の両方に効きます。まずはわかりやすい組み合わせから始めます。",
+    lead: "小さなストアでは、選びやすいセット提案が購入率と客単価の両方に効きます。各セットは単品購入よりお得な価格でご用意しています。",
     cta: "このセットを注文",
-    sets: [
-      {
-        name: "ブラジル習慣セット",
-        items: ["グリーンプロポリスエキス PonLee アルコール液 30ml", "アルチノポリス オーガニックコーヒー 中挽き 250g"],
-        price: "JPY 5,480"
-      },
-      {
-        name: "自然の発見セット",
-        items: ["プロポリス PonLee クルクマ＋花粉 ブレンド 30ml", "オーガニックハニー MN Propolis スクイズボトル 200g"],
-        price: "JPY 5,980"
-      },
-      {
-        name: "はじめての注文セット",
-        items: ["アルチノポリス オーガニックコーヒー 中挽き 250g", "OnVeg ダークチョコレート70% ココナッツシュガー 80g"],
-        price: "JPY 3,380"
-      }
-    ]
+    was: "通常",
+    save: "お得",
+    includes: "内容"
   }
 } as const;
+
+function formatYen(value: number, language: Language) {
+  return `JPY ${value.toLocaleString(language === "pt" ? "pt-BR" : "ja-JP")}`;
+}
 
 export function SetsContent({ language: forcedLanguage }: { language?: Language }) {
   const { language: contextLanguage } = useLanguage();
@@ -73,19 +49,46 @@ export function SetsContent({ language: forcedLanguage }: { language?: Language 
         </div>
 
         <div className="journal-grid">
-          {t.sets.map((setItem, index) => (
-            <article key={setItem.name} className="journal-card">
-              <p className="eyebrow">Set 0{index + 1}</p>
-              <h3>{setItem.name}</h3>
-              <ul className="bullet-list">
-                {setItem.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-              <p className="lead">{setItem.price}</p>
-          <Link href={localizedPath("/checkout", language)} className="text-link">{t.cta}</Link>
-            </article>
-          ))}
+          {kits.map((kit, index) => {
+            const { items, fullYen, priceYen, savingsYen } = getKitPricing(kit);
+            const kitParam = items.map((product) => product.slug).join(",");
+
+            return (
+              <article key={kit.id} className="journal-card kit-card">
+                <p className="eyebrow">Set 0{index + 1}</p>
+                <h3>{kit.name[language]}</h3>
+                <p>{kit.tagline[language]}</p>
+
+                <p className="kit-includes-label eyebrow">{t.includes}</p>
+                <ul className="bullet-list">
+                  {items.map((product) => (
+                    <li key={product.slug}>{product.name[language]}</li>
+                  ))}
+                </ul>
+
+                <div className="kit-price-row">
+                  <span className="kit-price-now">{formatYen(priceYen, language)}</span>
+                  {savingsYen > 0 ? (
+                    <span className="kit-price-was">
+                      {t.was} {formatYen(fullYen, language)}
+                    </span>
+                  ) : null}
+                </div>
+                {savingsYen > 0 ? (
+                  <span className="pill kit-save-pill">
+                    {t.save} {formatYen(savingsYen, language)}
+                  </span>
+                ) : null}
+
+                <Link
+                  href={`${localizedPath("/checkout", language)}?kit=${kitParam}`}
+                  className="button-secondary button-inline kit-cta"
+                >
+                  {t.cta}
+                </Link>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
