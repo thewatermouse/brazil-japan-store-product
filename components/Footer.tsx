@@ -3,6 +3,7 @@
 import Link from "next/link";
 
 import { useLanguage } from "@/components/LanguageProvider";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { localizedPath } from "@/lib/site";
 
 export function Footer() {
@@ -55,6 +56,7 @@ export function Footer() {
             ))}
           </ul>
         </div>
+        <NewsletterSignup />
       </div>
     </footer>
   );

@@ -140,7 +140,7 @@ main { min-height: calc(100vh - 180px); }
 .prose-shell { max-width: 76rem; }
 .stack-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 2rem; }
 .site-footer { margin: 0 1rem 1rem; padding: 1.5rem 0; }
-.footer-grid { grid-template-columns: 1.2fr 0.8fr; align-items: start; }
+.footer-grid { grid-template-columns: 1.2fr 0.7fr 1.3fr; align-items: start; }
 .footer-links-list li + li { margin-top: 0.45rem; }
 @media (max-width: 960px) {
   .hero-grid, .operation-grid, .product-layout, .contact-shell, .footer-grid, .card-grid, .stack-grid, .shelf-grid, .checkout-grid, .product-hero-shell, .benefit-grid, .journal-grid, .product-section-card.two-column { grid-template-columns: 1fr; }
@@ -337,3 +337,10 @@ main { min-height: calc(100vh - 180px); }
   color: var(--earth);
   font-weight: 700;
 }
+
+/* Newsletter signup (footer) */
+.newsletter h3 { font-size: 1.25rem; margin: 0.3rem 0 0.5rem; }
+.newsletter-form { display: flex; gap: 0.6rem; margin-top: 0.9rem; flex-wrap: wrap; }
+.newsletter-input { flex: 1 1 12rem; min-width: 0; }
+.newsletter-button { flex: 0 0 auto; white-space: nowrap; }
+.newsletter-sink { display: none; }
