@@ -5,7 +5,7 @@ import { ProductDetailContent } from "@/components/ProductDetailContent";
 import { StructuredData } from "@/components/StructuredData";
 import { getProductBySlug, isVisibleProduct, visibleProducts } from "@/data/products";
 import { buildMetadata } from "@/lib/metadata";
-import { siteUrl } from "@/lib/site";
+import { localizedSiteUrl, siteUrl } from "@/lib/site";
 
 type ProductPageProps = {
   params: Promise<{ slug: string }>;
@@ -44,26 +44,42 @@ export default async function ProductPage({ params }: ProductPageProps) {
   return (
     <>
       <StructuredData
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Product",
-          name: product.name.pt,
-          description: product.shortDescription.pt,
-          image: `${siteUrl}${product.image}`,
-          sku: product.slug,
-          brand: {
-            "@type": "Brand",
-            name: "Nippon Brasil Select"
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: product.name.pt,
+            description: product.shortDescription.pt,
+            image: `${siteUrl}${product.image}`,
+            sku: product.slug,
+            brand: {
+              "@type": "Brand",
+              name: "Nippon Brasil Select"
+            },
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "JPY",
+              price: product.priceYen,
+              availability: "https://schema.org/InStock",
+              url: `${siteUrl}/products/${product.slug}/`
+            },
+            countryOfOrigin: "BR"
           },
-          offers: {
-            "@type": "Offer",
-            priceCurrency: "JPY",
-            price: product.priceYen,
-            availability: "https://schema.org/InStock",
-            url: `${siteUrl}/products/${product.slug}/`
-          },
-          countryOfOrigin: "BR"
-        }}
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Início", item: localizedSiteUrl("/", "pt") },
+              { "@type": "ListItem", position: 2, name: "Produtos", item: localizedSiteUrl("/products", "pt") },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: product.name.pt,
+                item: localizedSiteUrl(`/products/${product.slug}`, "pt")
+              }
+            ]
+          }
+        ]}
       />
       <ProductDetailContent product={product} />
     </>

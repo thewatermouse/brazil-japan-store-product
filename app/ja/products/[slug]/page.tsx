@@ -44,26 +44,42 @@ export default async function JapaneseProductPage({ params }: ProductPageProps) 
   return (
     <>
       <StructuredData
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Product",
-          name: product.name.ja,
-          description: product.shortDescription.ja,
-          image: `${siteUrl}${product.image}`,
-          sku: product.slug,
-          brand: {
-            "@type": "Brand",
-            name: "Nippon Brasil Select"
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: product.name.ja,
+            description: product.shortDescription.ja,
+            image: `${siteUrl}${product.image}`,
+            sku: product.slug,
+            brand: {
+              "@type": "Brand",
+              name: "Nippon Brasil Select"
+            },
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "JPY",
+              price: product.priceYen,
+              availability: "https://schema.org/InStock",
+              url: localizedSiteUrl(`/products/${product.slug}`, "ja")
+            },
+            countryOfOrigin: "BR"
           },
-          offers: {
-            "@type": "Offer",
-            priceCurrency: "JPY",
-            price: product.priceYen,
-            availability: "https://schema.org/InStock",
-            url: localizedSiteUrl(`/products/${product.slug}`, "ja")
-          },
-          countryOfOrigin: "BR"
-        }}
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "ホーム", item: localizedSiteUrl("/", "ja") },
+              { "@type": "ListItem", position: 2, name: "商品一覧", item: localizedSiteUrl("/products", "ja") },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: product.name.ja,
+                item: localizedSiteUrl(`/products/${product.slug}`, "ja")
+              }
+            ]
+          }
+        ]}
       />
       <ProductDetailContent product={product} language="ja" />
     </>
