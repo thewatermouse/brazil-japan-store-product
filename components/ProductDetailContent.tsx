@@ -4,8 +4,10 @@ import Link from "next/link";
 
 import { useLanguage } from "@/components/LanguageProvider";
 import type { Language, Product } from "@/data/products";
+import { storeContact } from "@/data/store";
+import { trackEvent } from "@/lib/analytics";
 import { assetPath } from "@/lib/asset-path";
-import { localizedPath } from "@/lib/site";
+import { localizedPath, localizedSiteUrl } from "@/lib/site";
 
 const categoryTone = {
   propolis: { pt: "Extrato da mata brasileira", ja: "ブラジルの森から生まれた滴" },
@@ -27,6 +29,7 @@ export function ProductDetailContent({
     pt: {
       back: "Voltar ao catálogo",
       buy: "Iniciar pedido",
+      whatsapp: "Comprar pelo WhatsApp",
       price: "Preço",
       weight: "Conteúdo",
       shelfLife: "Validade",
@@ -41,6 +44,7 @@ export function ProductDetailContent({
     ja: {
       back: "商品一覧へ戻る",
       buy: "注文を始める",
+      whatsapp: "WhatsAppで注文",
       price: "価格",
       weight: "内容量",
       shelfLife: "賞味期限",
@@ -55,6 +59,25 @@ export function ProductDetailContent({
   } as const;
 
   const t = copy[language];
+
+  const productUrl = localizedSiteUrl(`/products/${product.slug}`, language);
+  const whatsappMessage =
+    language === "pt"
+      ? `Olá! Tenho interesse neste produto: ${product.name.pt} — ${productUrl}`
+      : `こんにちは。この商品に興味があります: ${product.name.ja} — ${productUrl}`;
+  const whatsappHref = storeContact.whatsappNumber
+    ? `https://wa.me/${storeContact.whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`
+    : "";
+
+  function handleWhatsappClick() {
+    trackEvent("generate_lead", {
+      method: "whatsapp",
+      item_id: product.slug,
+      item_name: product.name[language],
+      value: product.priceYen,
+      currency: "JPY"
+    });
+  }
 
   return (
     <section className="section">
@@ -77,6 +100,17 @@ export function ProductDetailContent({
               >
                 {t.buy}
               </Link>
+              {whatsappHref ? (
+                <a
+                  href={whatsappHref}
+                  className="button-whatsapp"
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={handleWhatsappClick}
+                >
+                  {t.whatsapp}
+                </a>
+              ) : null}
               <Link href={localizedPath("/products", language)} className="button-secondary">
                 {t.back}
               </Link>
@@ -98,6 +132,17 @@ export function ProductDetailContent({
           >
             {t.buy}
           </Link>
+          {whatsappHref ? (
+            <a
+              href={whatsappHref}
+              className="button-whatsapp button-block"
+              target="_blank"
+              rel="noreferrer"
+              onClick={handleWhatsappClick}
+            >
+              {t.whatsapp}
+            </a>
+          ) : null}
         </aside>
       </div>
 

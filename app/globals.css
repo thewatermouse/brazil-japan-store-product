@@ -344,3 +344,19 @@ main { min-height: calc(100vh - 180px); }
 .newsletter-input { flex: 1 1 12rem; min-width: 0; }
 .newsletter-button { flex: 0 0 auto; white-space: nowrap; }
 .newsletter-sink { display: none; }
+
+/* WhatsApp buy button */
+.button-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0.95rem 1.35rem;
+  border-radius: var(--radius);
+  font-family: "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #fff;
+  background: #25d366;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+.button-whatsapp:hover { background: #1ebe5b; }
