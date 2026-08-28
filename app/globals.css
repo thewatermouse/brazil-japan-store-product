@@ -360,3 +360,7 @@ main { min-height: calc(100vh - 180px); }
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
 .button-whatsapp:hover { background: #1ebe5b; }
+
+.product-card-actions { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.4rem; }
+.product-card-actions .text-link { margin-top: 0; }
+.button-whatsapp-sm { min-height: 40px; padding: 0.5rem 1rem; font-size: 0.9rem; }
