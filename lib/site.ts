@@ -2,9 +2,16 @@ import type { Language } from "@/data/products";
 
 export const repoName = "brazil-japan-store-product";
 export const siteOrigin = "https://thewatermouse.github.io";
-export const siteBasePath =
-  process.env.NODE_ENV === "production" ? `/${repoName}` : "";
+
+// Canonical/SEO base path — always the public GitHub Pages URL, independent
+// of which deploy serves the request (used for canonical, sitemap, OG URLs).
+export const siteBasePath = `/${repoName}`;
 export const siteUrl = `${siteOrigin}${siteBasePath}`;
+
+// Runtime asset base path — must match THIS deploy's basePath: set to
+// "/brazil-japan-store-product" on GitHub Pages, empty on Vercel (root).
+// Mirrors next.config's basePath so <img> src paths resolve on both.
+export const assetBasePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 export const defaultLanguage: Language = "pt";
 export const supportedLanguages: Language[] = ["pt", "ja"];
 

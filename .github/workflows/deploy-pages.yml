@@ -40,6 +40,9 @@ jobs:
           npm run build
         env:
           STATIC_EXPORT: "1"
+          # GitHub Pages serves under /<repo>, so assets and routes need this
+          # base path. Vercel leaves it unset and serves from root.
+          NEXT_PUBLIC_BASE_PATH: "/brazil-japan-store-product"
           # Set repo variable NEXT_PUBLIC_GA_MEASUREMENT_ID (Settings →
           # Secrets and variables → Actions → Variables) to enable GA4.
           NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ vars.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
