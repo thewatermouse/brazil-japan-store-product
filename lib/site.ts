@@ -1,11 +1,13 @@
 import type { Language } from "@/data/products";
 
 export const repoName = "brazil-japan-store-product";
-export const siteOrigin = "https://thewatermouse.github.io";
 
-// Canonical/SEO base path — always the public GitHub Pages URL, independent
-// of which deploy serves the request (used for canonical, sitemap, OG URLs).
-export const siteBasePath = `/${repoName}`;
+// Canonical/SEO origin — the public production domain (served at root on
+// Vercel). Used for canonical tags, sitemap, robots, OG images and structured
+// data, so search engines index this domain regardless of which deploy renders
+// the request (the GitHub Pages mirror points here too).
+export const siteOrigin = "https://nipponbrasil.thewatermouse.com";
+export const siteBasePath = "";
 export const siteUrl = `${siteOrigin}${siteBasePath}`;
 
 // Runtime asset base path — must match THIS deploy's basePath: set to
