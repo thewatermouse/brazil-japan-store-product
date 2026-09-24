@@ -1,6 +1,6 @@
 ﻿export const storeContact = {
   email: "rodrigokato@gmail.com",
-  whatsappNumber: ""
+  whatsappNumber: "5511942935847"
 } as const;
 
 export const shippingEstimateTiers = [
