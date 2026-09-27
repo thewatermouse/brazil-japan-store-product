@@ -364,3 +364,8 @@ main { min-height: calc(100vh - 180px); }
 .product-card-actions { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.4rem; }
 .product-card-actions .text-link { margin-top: 0; }
 .button-whatsapp-sm { min-height: 40px; padding: 0.5rem 1rem; font-size: 0.9rem; }
+
+/* Guide article */
+.guide-section { margin-top: 1.8rem; }
+.guide-section h2 { font-size: clamp(1.5rem, 2.5vw, 2rem); margin: 0 0 0.8rem; }
+.guide-section p + p { margin-top: 0.9rem; }

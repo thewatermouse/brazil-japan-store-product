@@ -11,6 +11,7 @@ const navItems = {
   pt: [
     { href: "/", label: "Início" },
     { href: "/products", label: "Produtos" },
+    { href: "/guides", label: "Guias" },
     { href: "/about", label: "Marca" },
     { href: "/checkout", label: "Pedido" },
     { href: "/contact", label: "Contato" }
@@ -18,6 +19,7 @@ const navItems = {
   ja: [
     { href: "/", label: "ホーム" },
     { href: "/products", label: "商品一覧" },
+    { href: "/guides", label: "ガイド" },
     { href: "/about", label: "ブランド" },
     { href: "/checkout", label: "注文" },
     { href: "/contact", label: "お問い合わせ" }
