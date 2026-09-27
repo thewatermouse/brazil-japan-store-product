@@ -78,7 +78,23 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 item: localizedSiteUrl(`/products/${product.slug}`, "pt")
               }
             ]
-          }
+          },
+          ...(product.faq.length
+            ? [
+                {
+                  "@context": "https://schema.org",
+                  "@type": "FAQPage",
+                  mainEntity: product.faq.map((item) => ({
+                    "@type": "Question",
+                    name: item.question.pt,
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: item.answer.pt
+                    }
+                  }))
+                }
+              ]
+            : [])
         ]}
       />
       <ProductDetailContent product={product} />

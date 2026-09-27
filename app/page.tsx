@@ -19,12 +19,21 @@ export default function HomePage() {
         data={[
           {
             "@context": "https://schema.org",
-            "@type": "Organization",
+            "@type": "OnlineStore",
             name: "Nippon Brasil Select",
             url: siteUrl,
+            logo: `${siteUrl}/icons/store-icon.svg`,
+            image: `${siteUrl}/og/storefront-og.svg`,
             email: "rodrigokato@gmail.com",
             areaServed: "JP",
-            knowsAbout: ["Brazilian coffee", "Brazilian propolis", "Acai powder"]
+            currenciesAccepted: "JPY",
+            knowsAbout: [
+              "Brazilian coffee",
+              "Brazilian green propolis",
+              "Acai powder",
+              "Brazilian food",
+              "Brazilian products in Japan"
+            ]
           },
           {
             "@context": "https://schema.org",

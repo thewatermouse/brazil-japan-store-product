@@ -78,7 +78,23 @@ export default async function JapaneseProductPage({ params }: ProductPageProps) 
                 item: localizedSiteUrl(`/products/${product.slug}`, "ja")
               }
             ]
-          }
+          },
+          ...(product.faq.length
+            ? [
+                {
+                  "@context": "https://schema.org",
+                  "@type": "FAQPage",
+                  mainEntity: product.faq.map((item) => ({
+                    "@type": "Question",
+                    name: item.question.ja,
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: item.answer.ja
+                    }
+                  }))
+                }
+              ]
+            : [])
         ]}
       />
       <ProductDetailContent product={product} language="ja" />
