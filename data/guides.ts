@@ -119,6 +119,144 @@ export const guides: Guide[] = [
       }
     ],
     relatedSlugs: ["cafe-altinopolis-organico", "cafe-cia-organica-biodinamico"]
+  },
+  {
+    slug: "guarana-em-po-energia",
+    date: "2026-09-28",
+    title: {
+      pt: "Guaraná em pó: energia natural da Amazônia",
+      ja: "アマゾンの天然エナジー：グアラナパウダーの使い方"
+    },
+    description: {
+      pt: "O que é o guaraná, por que tem mais cafeína que o café e como usar o pó puro em bebidas e receitas.",
+      ja: "グアラナとは何か、コーヒーより多いカフェイン、純粋パウダーの飲み物やレシピでの使い方を解説します。"
+    },
+    intro: {
+      pt: "O guaraná é o energético natural mais brasileiro que existe. Este guia explica de onde vem, por que energiza e como usar o pó puro no dia a dia.",
+      ja: "グアラナは、ブラジルを代表する天然のエナジー素材です。この記事では、その産地やエネルギーの理由、純粋パウダーの使い方をご紹介します。"
+    },
+    sections: [
+      {
+        heading: { pt: "O que é o guaraná", ja: "グアラナとは" },
+        paragraphs: [
+          {
+            pt: "O guaraná é uma planta nativa da Amazônia cujas sementes são ricas em cafeína natural. Moído na hora, o pó preserva os compostos ativos e mantém o sabor característico.",
+            ja: "グアラナはアマゾン原産の植物で、その種子には天然のカフェインが豊富に含まれます。挽きたてのパウダーは活性成分と独特の風味をしっかり保ちます。"
+          }
+        ]
+      },
+      {
+        heading: { pt: "Por que energiza", ja: "エネルギーの理由" },
+        paragraphs: [
+          {
+            pt: "As sementes de guaraná chegam a conter cerca do dobro da cafeína de um grão de café. Por isso é muito usado em sucos, vitaminas e bebidas para dar disposição ao longo do dia.",
+            ja: "グアラナの種子には、コーヒー豆の約2倍のカフェインが含まれるとされます。そのため、ジュースやスムージー、ドリンクに加えて一日の活力に取り入れられています。"
+          }
+        ]
+      },
+      {
+        heading: { pt: "Como usar", ja: "使い方" },
+        paragraphs: [
+          {
+            pt: "Adicione uma pequena quantidade em sucos, vitaminas, chás ou receitas. O pó não é totalmente hidrossolúvel: mexa bem e, se preferir, coe antes de beber. Comece com pouco para sentir o efeito.",
+            ja: "ジュース・スムージー・お茶・レシピに少量を加えてください。パウダーは完全な水溶性ではないため、よく混ぜ、お好みで濾してからお召し上がりください。まずは少量からお試しを。"
+          }
+        ]
+      }
+    ],
+    relatedSlugs: ["guarana-valeso-moido", "macabite-red-choco-colorandina"]
+  },
+  {
+    slug: "castanha-do-para-selenio",
+    date: "2026-09-28",
+    title: {
+      pt: "Castanha do Pará: a fonte natural de selênio",
+      ja: "ブラジルナッツ：天然のセレン供給源"
+    },
+    description: {
+      pt: "Por que a castanha do Pará é uma das maiores fontes de selênio, quantas comer por dia e como conservar.",
+      ja: "ブラジルナッツがセレンの豊富な供給源である理由、1日の目安量、保存方法を解説します。"
+    },
+    intro: {
+      pt: "A castanha do Pará é um dos alimentos mais ricos em selênio do planeta. Este guia explica o que ela oferece, quanto consumir e como conservar.",
+      ja: "ブラジルナッツは、地球上でもセレンを最も多く含む食品のひとつです。この記事では、その特徴と目安量、保存方法をご紹介します。"
+    },
+    sections: [
+      {
+        heading: { pt: "O que é a castanha do Pará", ja: "ブラジルナッツとは" },
+        paragraphs: [
+          {
+            pt: "Colhida de árvores nativas da Amazônia, a castanha do Pará é natural, sem processamento adicional, e concentra nutrientes — especialmente o selênio, um mineral importante para o corpo.",
+            ja: "アマゾンの原生林から収穫されるブラジルナッツは、無加工で自然のまま。栄養素、とりわけ体に大切なミネラルであるセレンを豊富に含みます。"
+          }
+        ]
+      },
+      {
+        heading: { pt: "Quantas comer por dia", ja: "1日の目安量" },
+        paragraphs: [
+          {
+            pt: "Por ser tão concentrada em selênio, 1 a 2 unidades por dia já costumam suprir a necessidade diária. Não é preciso comer muitas — a moderação é parte do benefício.",
+            ja: "セレンが非常に豊富なため、1日1〜2粒で目安量を補えるとされます。たくさん食べる必要はなく、適量が大切です。"
+          }
+        ]
+      },
+      {
+        heading: { pt: "Como conservar e usar", ja: "保存と使い方" },
+        paragraphs: [
+          {
+            pt: "Guarde em recipiente fechado, em local fresco e seco. Consuma pura como snack ou adicione em granolas, saladas e receitas.",
+            ja: "密閉容器に入れ、冷暗所で保管してください。そのままスナックとして、またはグラノーラやサラダ、料理に加えてお楽しみください。"
+          }
+        ]
+      }
+    ],
+    relatedSlugs: ["castanha-para-alibec", "castanha-caju-alibec"]
+  },
+  {
+    slug: "chocolate-bean-to-bar-amazonia",
+    date: "2026-09-28",
+    title: {
+      pt: "Chocolate bean-to-bar da Amazônia: o que significa",
+      ja: "アマゾンのBean-to-Barチョコレートとは"
+    },
+    description: {
+      pt: "Entenda o conceito bean-to-bar, o cacau da Amazônia e por que esses chocolates são veganos e sem conservantes.",
+      ja: "Bean-to-Barの意味、アマゾン産カカオ、そしてヴィーガンで無添加である理由を解説します。"
+    },
+    intro: {
+      pt: "Bean-to-bar é um jeito de fazer chocolate com controle total, do grão à barra. Este guia explica o conceito, o cacau da Amazônia e o que torna esses chocolates diferentes.",
+      ja: "Bean-to-Barは、カカオ豆から板チョコまでを一貫して手がける製法です。この記事では、その意味とアマゾン産カカオ、そしてこれらのチョコの違いをご紹介します。"
+    },
+    sections: [
+      {
+        heading: { pt: "O que é bean-to-bar", ja: "Bean-to-Barとは" },
+        paragraphs: [
+          {
+            pt: "Bean-to-bar significa que o mesmo produtor cuida de todas as etapas — seleção do cacau, torra, moagem e a barra final. Isso dá mais controle sobre qualidade e sabor, e valoriza a origem do grão.",
+            ja: "Bean-to-Barとは、同じ生産者がカカオの選別から焙煎、摩砕、板チョコの仕上げまで、すべての工程を手がけることを指します。品質と風味をより細かく管理でき、豆の産地を大切にできます。"
+          }
+        ]
+      },
+      {
+        heading: { pt: "Cacau da Amazônia", ja: "アマゾン産カカオ" },
+        paragraphs: [
+          {
+            pt: "O cacau amazônico tem perfil de sabor próprio, ligado à floresta e ao solo da região. Chocolates feitos com ele carregam essa identidade brasileira no aroma e no sabor.",
+            ja: "アマゾン産カカオは、森と土壌に育まれた独自の風味を持ちます。これを使ったチョコレートには、香りと味わいにブラジルらしい個性が宿ります。"
+          }
+        ]
+      },
+      {
+        heading: { pt: "Vegano e açúcar de coco", ja: "ヴィーガンとココナッツシュガー" },
+        paragraphs: [
+          {
+            pt: "As versões que trabalhamos são veganas, sem glúten e sem conservantes. Algumas usam açúcar de coco no lugar do açúcar refinado, e leite de coco no lugar do leite; a barra 70% é mais intensa, a 50% mais suave.",
+            ja: "取り扱いのタイプはヴィーガン・グルテンフリー・無保存料です。精製糖の代わりにココナッツシュガー、牛乳の代わりにヤシミルクを使うものもあります。70%はより濃厚に、50%はよりまろやかに楽しめます。"
+          }
+        ]
+      }
+    ],
+    relatedSlugs: ["chocolate-onveg-70-acucar-coco", "chocolate-onveg-50-leite-coco"]
   }
 ];
 
