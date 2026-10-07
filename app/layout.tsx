@@ -3,6 +3,7 @@
 import { Footer } from "@/components/Footer";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Header } from "@/components/Header";
+import { MetaPixel } from "@/components/MetaPixel";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import { siteOrigin, siteUrl } from "@/lib/site";
 
@@ -77,6 +78,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body>
         <GoogleAnalytics />
+        <MetaPixel />
         <LanguageProvider>
           <Header />
           <main>{children}</main>

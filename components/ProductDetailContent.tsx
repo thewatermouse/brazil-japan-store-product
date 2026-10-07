@@ -1,11 +1,12 @@
 ﻿"use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 
 import { useLanguage } from "@/components/LanguageProvider";
 import type { Language, Product } from "@/data/products";
 import { storeContact } from "@/data/store";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, trackViewContent } from "@/lib/analytics";
 import { assetPath } from "@/lib/asset-path";
 import { localizedPath, localizedSiteUrl } from "@/lib/site";
 
@@ -24,6 +25,15 @@ export function ProductDetailContent({
 }) {
   const { language: contextLanguage } = useLanguage();
   const language = forcedLanguage ?? contextLanguage;
+
+  useEffect(() => {
+    trackViewContent({
+      itemId: product.slug,
+      itemName: product.name[language],
+      value: product.priceYen,
+      currency: "JPY"
+    });
+  }, [product.slug, product.name, product.priceYen, language]);
 
   const copy = {
     pt: {
